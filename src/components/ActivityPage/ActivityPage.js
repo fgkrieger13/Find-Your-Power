@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -10,17 +11,24 @@ import React, {Component} from 'react';
 
 
 class ActivityPage extends Component {
-  
-    render() {
-      return (
-        <div>
+
+  componentDidMount() {
+    
+    
+    this.props.dispatch({ type: 'FETCH_USER_ACTIVITY' })
+  }
+
+  render() {
+    return (
+      <div>
         <div>
           <p>
             This is the ActivityPage
           </p>
         </div>
       </div>
-    )}
+    )
   }
-  
-  export default (ActivityPage);
+}
+
+export default connect()(ActivityPage);
