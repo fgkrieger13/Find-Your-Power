@@ -6,6 +6,8 @@ import axios from 'axios';
 
 class RegisterPage extends Component {
   state = {
+    first_name: '',
+    last_name: '',
     username: '',
     password: '',
   };
@@ -17,8 +19,11 @@ class RegisterPage extends Component {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
           username: this.state.username,
           password: this.state.password,
+
         },
       });
     } else {
@@ -30,11 +35,6 @@ class RegisterPage extends Component {
     this.setState({
       [propertyName]: event.target.value,
     });
-  }
-
-  handleStripeClick = () => {
-   
-
   }
 
   render() {
@@ -54,7 +54,25 @@ class RegisterPage extends Component {
             <h1>Register User.</h1>
             <div>
               <input
-                placeholder="USERNAME"
+                placeholder="FIRST NAME"
+                type="text"
+                value={this.state.first_name}
+                onChange={this.handleInputChangeFor('first_name')}
+              />
+
+            </div>
+            <div>
+              <input
+                placeholder="LAST NAME"
+                type="text"
+                value={this.state.last_name}
+                onChange={this.handleInputChangeFor('last_name')}
+              />
+
+            </div>
+            <div>
+              <input
+                placeholder="EMAIL"
                 type="text"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
@@ -76,10 +94,6 @@ class RegisterPage extends Component {
                 name="submit"
                 value="Register"
               />
-              <a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_GMt93IFHGW5xh0Yzr3NhlvOMsmtZQPBj&state={STATE_VALUE}&stripe_user[business_type]=individual"><img
-                src={logo}
-                onClick={() => this.handleStripeClick()}
-              /></a>
             </div>
           </form>
 
