@@ -24,11 +24,19 @@ class ActivityPage extends Component {
         <div>
           <p>
             This is the ActivityPage
+
           </p>
+          <pre>
+          {JSON.stringify(this.props.userActivity, null, 2)}
+          </pre>
         </div>
       </div>
     )
   }
 }
 
-export default connect()(ActivityPage);
+const mapStateToProps = state => ({
+  userActivity: state.userActivityReducer,
+});
+
+export default connect(mapStateToProps)(ActivityPage);
