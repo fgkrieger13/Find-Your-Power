@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ConnectionMade from '../ConnectionMade/ConnectionMade'
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -24,10 +25,15 @@ class ActivityPage extends Component {
         <div>
           <p>
             This is the ActivityPage
-
           </p>
+          <div>
+            {/* {this.props.userActivity.filter(allActivity => allActivity.user_id === this.props.user.id && allActivity.user_id === allActivity.connector_id)[0].first_name} */}
+          </div>
           <pre>
-          {JSON.stringify(this.props.userActivity, null, 2)}
+            {/* {JSON.stringify(this.props.userActivity.filter(allActivity => allActivity.user_id === this.props.user.id && allActivity.user_id === allActivity.connector_id)[0].first_name, null, 2)} */}
+          </pre>
+          <pre>
+            {JSON.stringify(this.props.userActivity, null, 2)}
           </pre>
         </div>
       </div>
@@ -36,6 +42,7 @@ class ActivityPage extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.user,
   userActivity: state.userActivityReducer,
 });
 
