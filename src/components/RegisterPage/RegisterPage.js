@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import logo from '../../images/light-on-dark.png';
+import axios from 'axios';
+
 
 class RegisterPage extends Component {
   state = {
@@ -19,7 +22,7 @@ class RegisterPage extends Component {
         },
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
   } // end registerUser
 
@@ -29,9 +32,15 @@ class RegisterPage extends Component {
     });
   }
 
+  handleStripeClick = () => {
+   
+
+  }
+
   render() {
     return (
       <div>
+
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
@@ -40,48 +49,53 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
+        <div className="register-container">
+          <form onSubmit={this.registerUser}>
+            <h1>Register User.</h1>
+            <div>
               <input
+                placeholder="USERNAME"
                 type="text"
-                name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
+
+            </div>
+            <div>
               <input
+                placeholder="PASSWORD"
                 type="password"
-                name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
-            </label>
-          </div>
-          <div>
-            <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
-            />
-          </div>
-        </form>
+            </div>
+            <div>
+              <input
+                className="register"
+                type="submit"
+                name="submit"
+                value="Register"
+              />
+              <a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://connect.stripe.com/connect/default/oauth/test&client_id=ca_GMt93IFHGW5xh0Yzr3NhlvOMsmtZQPBj&state={STATE_VALUE}&stripe_user[business_type]=individual"><img
+                src={logo}
+                onClick={() => this.handleStripeClick()}
+              /></a>
+            </div>
+          </form>
+
+
+        </div>
         <center>
           <button
             type="button"
             className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
           >
             Login
           </button>
+
         </center>
+
       </div>
     );
   }
