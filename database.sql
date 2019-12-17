@@ -11,6 +11,7 @@ CREATE TABLE "user" (
     "username" VARCHAR (150) UNIQUE NOT NULL,
     "time_user" TIMESTAMP,
     "zipcode" INT,
+    "bio" VARCHAR (1000),
     "skills" TEXT,
     "services" TEXT,
     "roles" TEXT,
