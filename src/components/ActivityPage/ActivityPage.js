@@ -19,12 +19,12 @@ class ActivityPage extends Component {
     this.props.dispatch({ type: 'FETCH_USER_ACTIVITY' })
   }
 
-  changeConnectingAccepted = () => {
-    console.log('I am the connecting!');
+  changeConnectingAccepted = (id) => {
+    this.props.dispatch({ type: 'CHANGE_CONNECTING_ACCEPTED', payload: {connections_id: id}});
   }
 
-  changeConnectingToAccepted = () => {
-    console.log('I am the connecting to!');
+  changeConnectingToAccepted = (id) => {
+    this.props.dispatch({ type: 'CHANGE_CONNECTING_TO_ACCEPTED', payload: {connections_id: id}});
   }
 
   render() {
@@ -62,9 +62,9 @@ class ActivityPage extends Component {
                         <div>
                           <button onClick={
                             activity.connecting_id === this.props.user.id ? 
-                              this.changeConnectingAccepted 
+                              () => this.changeConnectingAccepted(activity.connections_id) 
                               : 
-                              this.changeConnectingToAccepted
+                              () => this.changeConnectingToAccepted(activity.connections_id) 
                           }>
                             Accept
                           </button>
