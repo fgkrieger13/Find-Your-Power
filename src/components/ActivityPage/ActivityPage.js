@@ -50,8 +50,15 @@ class ActivityPage extends Component {
                         <p>{activity.message}</p>
                       </div>
                       <div>
-                        <button>Accept</button>
-                        <button>Deny</button>
+                        {( activity.connecting_id === this.props.user.id && !activity.connecting_accepted) || (activity.connecting_to_id === this.props.user.id && !activity.connecting_to_accepted) ? 
+                        <div>
+                          <button>Accept</button>
+                          <button>Deny</button> 
+                        </div>
+                        :
+                        ''
+                      }
+ 
                       </div>
                     </div>
                   )
