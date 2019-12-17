@@ -31,7 +31,9 @@ class ActivityPage extends Component {
             {(this.props.userActivity.length > 0) ? 
               <table>
                 <tbody>
-                  {(this.props.userActivity.filter(activity => (activity.connecting_id === this.props.user.id || activity.connecting_to_id === this.props.user.id))).map((activity) => 
+                  {(this.props.userActivity.filter(activity => 
+                  ((activity.connecting_id === this.props.user.id || activity.connecting_to_id === this.props.user.id) 
+                  && activity.connecting_accepted && activity.connecting_to_accepted))).map((activity) => 
                     <tr key={activity.connections_id}>
                       <td>{activity.connector_first_name} {activity.connector_last_name}</td>
                       <td>connected you with</td>
@@ -40,7 +42,6 @@ class ActivityPage extends Component {
                         :
                         <td>{activity.connecting_first_name} {activity.connecting_last_name}</td>
                       }
-                        {/* {activity.connecting_to_first_name} {activity.connecting_to_last_name} */}
                     </tr>
                   )}
                 </tbody>
