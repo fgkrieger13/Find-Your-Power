@@ -20,6 +20,15 @@ function* connectingToAccepted(action) {
   }
 }
 
+function* denyConnection(action) {
+  try {
+    yield axios.put('/api/activity/deny-connection', action.payload);
+    yield put({ type: 'FETCH_USER_ACTIVITY' })
+  } catch (error) {
+    console.log('Deny connection put request failed', error);
+  }
+}
+
 function* fetchUserActivity() {
   try {
     const response = yield axios.get('/api/activity');    
@@ -34,6 +43,8 @@ function* userSaga() {
   yield takeLatest('FETCH_USER_ACTIVITY', fetchUserActivity);
   yield takeLatest('CHANGE_CONNECTING_ACCEPTED', connectingAccepted);
   yield takeLatest('CHANGE_CONNECTING_TO_ACCEPTED', connectingToAccepted);
+  yield takeLatest('DENY_CONNECTION', denyConnection);
+
 }
 
 export default userSaga;

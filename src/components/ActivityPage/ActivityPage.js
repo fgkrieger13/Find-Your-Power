@@ -27,6 +27,10 @@ class ActivityPage extends Component {
     this.props.dispatch({ type: 'CHANGE_CONNECTING_TO_ACCEPTED', payload: {connections_id: id}});
   }
 
+  denyConnection = (id) => {
+    this.props.dispatch({ type: 'DENY_CONNECTION', payload: {connections_id: id}})
+  }
+
   render() {
     return (
       <div className="container">
@@ -68,7 +72,9 @@ class ActivityPage extends Component {
                           }>
                             Accept
                           </button>
-                          <button>Deny</button> 
+                          <button onClick={ () => this.denyConnection(activity.connections_id)}>
+                            Deny
+                          </button> 
                         </div>
                         :
                         ''

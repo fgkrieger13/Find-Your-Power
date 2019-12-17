@@ -24,11 +24,6 @@ CREATE TABLE "connections" (
 	"connector_id" INT REFERENCES "user",
 	"message" TEXT,
 	"connecting_accepted" BOOLEAN DEFAULT 'false',
-	"connecting_to_accepted" BOOLEAN DEFAULT 'false'
+	"connecting_to_accepted" BOOLEAN DEFAULT 'false',
+    "active" BOOLEAN DEFAULT 'true'
 );
-
-INSERT INTO "user" ("first_name", "last_name", "password", "username", "connecting_to_accepted", "connecting_accepted") 
-VALUES ('jen', 'johnson', '$2b$10$5J3Xx09dG8MNOLjTNNFsO.rvhdA7f7ZCUx6PS7f/P5Hsget8CLMI.', 'jj@gmail.com'), ('jane', 'doe', '$2b$10$DQGJ/9cBhMm7317XUwKBL.ALlAuFlQ5.J0/dEDZNB/xHXzfGP5PG.', 'jdoe@gmail.com'); 
-
-INSERT INTO "connections" ("connecting_id", "connecting_to_id", "connector_id", "message")
-VALUES ('2', '3', '1', 'hello Jen, I think you should connect with Jane', 'true', 'true');

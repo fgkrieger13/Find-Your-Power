@@ -43,6 +43,18 @@ router.put('/connecting-to-accept', (req, res) => {
       res.sendStatus(500)
     })
 })
+// UPDATE deny connection
+router.put('/deny-connection', (req, res) => {
+  const queryText = `UPDATE "connections"
+    SET "active" = false
+    WHERE "id" = $1;`;
+  pool.query(queryText, [req.body.connections_id])
+    .then(() => res.sendStatus(200))
+    .catch((error) => {
+      console.log('Error in router UPDATE deny connection', error);
+      res.sendStatus(500)
+    })
+})
 
 
 module.exports = router;
