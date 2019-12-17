@@ -19,6 +19,14 @@ class ActivityPage extends Component {
     this.props.dispatch({ type: 'FETCH_USER_ACTIVITY' })
   }
 
+  changeConnectingAccepted = (id) => {
+    this.props.dispatch({ type: 'CHANGE_CONNECTING_ACCEPTED', payload: {connections_id: id}});
+  }
+
+  changeConnectingToAccepted = (id) => {
+    this.props.dispatch({ type: 'CHANGE_CONNECTING_TO_ACCEPTED', payload: {connections_id: id}});
+  }
+
   render() {
     return (
       <div className="container">
@@ -52,7 +60,14 @@ class ActivityPage extends Component {
                       <div>
                         {( activity.connecting_id === this.props.user.id && !activity.connecting_accepted) || (activity.connecting_to_id === this.props.user.id && !activity.connecting_to_accepted) ? 
                         <div>
-                          <button>Accept</button>
+                          <button onClick={
+                            activity.connecting_id === this.props.user.id ? 
+                              () => this.changeConnectingAccepted(activity.connections_id) 
+                              : 
+                              () => this.changeConnectingToAccepted(activity.connections_id) 
+                          }>
+                            Accept
+                          </button>
                           <button>Deny</button> 
                         </div>
                         :
@@ -64,24 +79,6 @@ class ActivityPage extends Component {
                   )
               : ''
             }
-            {/* <div>
-              <div className="avatar">
-                This is where the image will go!
-              </div>
-              <div>
-                <h4>NAME OF PERSON TO CONNECT WITH</h4>
-                <p>Suggested by:</p>
-                <p>NAME OF CONNECTOR</p>
-              </div>
-              <div>
-                <p>Message:</p>
-                <p>MESSAGE GOES HERE</p>
-              </div>
-              <div>
-                <button>Accept</button>
-                <button>Deny</button>
-              </div>
-            </div> */}
           </div>
           <div className="people-who-connected-you">
             <h3>People Who Connected You</h3>
