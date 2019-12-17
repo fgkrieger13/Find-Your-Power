@@ -27,10 +27,47 @@ class ActivityPage extends Component {
             This is the ActivityPage
           </p>
           <div>
-            
+            <h3>People Who Connected You</h3>
+            {(this.props.userActivity.length > 0) ? 
+              <table>
+                <tbody>
+                  {(this.props.userActivity.filter(activity => (activity.connecting_id === this.props.user.id || activity.connecting_to_id === this.props.user.id))).map((activity) => 
+                    <tr key={activity.connections_id}>
+                      <td>{activity.connector_first_name} {activity.connector_last_name}</td>
+                      <td>connected you with</td>
+                      {activity.connecting_id === this.props.user.id ? 
+                        <td>{activity.connecting_to_first_name} {activity.connecting_to_last_name}</td>
+                        :
+                        <td>{activity.connecting_first_name} {activity.connecting_last_name}</td>
+                      }
+                        {/* {activity.connecting_to_first_name} {activity.connecting_to_last_name} */}
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+              : ''
+            }
+          </div>
+          <div>
+            <h3>People You Connected</h3>
+            {(this.props.userActivity.length > 0) ? 
+              <table>
+                <tbody>
+                  {(this.props.userActivity.filter(activity => activity.connector_id === this.props.user.id)).map((activity) => 
+                    <tr key={activity.connections_id}>
+                      <td>{activity.connecting_first_name} {activity.connecting_last_name}</td>
+                      <td>connected with</td>
+                      <td>{activity.connecting_to_first_name} {activity.connecting_to_last_name}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+              : ''
+            }
           </div>
           <pre>
             {JSON.stringify(this.props.userActivity, null, 2)}
+            {/* {JSON.stringify((this.props.userActivity.filter(activity => activity.connector_id === this.props.user.id)), null, 2)} */}
           </pre>
         </div>
       </div>
