@@ -27,11 +27,8 @@ class ActivityPage extends Component {
             This is the ActivityPage
           </p>
           <div>
-            {/* {this.props.userActivity.filter(allActivity => allActivity.user_id === this.props.user.id && allActivity.user_id === allActivity.connector_id)[0].first_name} */}
+            
           </div>
-          <pre>
-            {/* {JSON.stringify(this.props.userActivity.filter(allActivity => allActivity.user_id === this.props.user.id && allActivity.user_id === allActivity.connector_id)[0].first_name, null, 2)} */}
-          </pre>
           <pre>
             {JSON.stringify(this.props.userActivity, null, 2)}
           </pre>
