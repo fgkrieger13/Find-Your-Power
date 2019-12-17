@@ -9,7 +9,7 @@ h3, h2 {
 }
 
 p {
-    color: #414141
+    color: #414141;
 }
 
 .alert {
@@ -94,6 +94,7 @@ h1 {
     align-items: center;
     justify-content: center;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .profile-photo-text {
@@ -159,6 +160,7 @@ h1 {
     margin: 20px auto;
     padding: 10px;
     border-radius: 4px;
+    margin-top: 45px;
 }
 .profile-view-connected-button {
     background-color: #f29475;
@@ -186,4 +188,18 @@ h1 {
     max-width: 25%;
     padding: 15px;
     text-align: center;
+}
+.profile-button-placement {
+    margin-top: 15px;
+    margin-left: 60px;
+    display: flex;
+    flex-direction: row;
+}
+.profile-edit-button-placement {
+    margin-left: 10px;
+}
+.profile-blur {
+    height:100%;
+    width: 100%;
+    background-color: black
 }

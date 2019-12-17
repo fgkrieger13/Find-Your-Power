@@ -5,8 +5,37 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 
 class MyProfile extends Component {
 
+  state = {
+    edit: false,
+    first_name: '',
+    last_name: '',
+    username: '',
+    zipcode: '',
+    skills: '',
+    services: '',
+    roles: '',
+    bio: '',
+  }
+
+  editProfileButtonClick = () => {
+    console.log(this.state.edit)
+    this.setState({
+      ...this.state,
+      edit: !this.state.edit,
+      first_name: this.props.user.first_name,
+      last_name: this.props.user.last_name,
+      username: this.props.user.username,
+      zipcode: this.props.user.zipcode,
+      skills: this.props.user.skills,
+      services: this.props.user.services,
+      roles: this.props.user.roles,
+      bio: this.props.user.bio,
+    })
+  }
+
   render() {
     return (
+      <>{!this.state.edit ? 
       <div className="profile-container">
         <div className="profile-header-container">
           <div className="profile-photo">
@@ -24,6 +53,14 @@ class MyProfile extends Component {
         <div className="profile-bio-container">
           <h3>Bio:</h3>
           <p className="profile-bio">{this.props.user.bio}</p>
+        </div>
+        <div className="profile-button-placement">
+          <div className="profile-edit-button-placement">
+            <button className="profile-view-connected-button" onClick={this.editProfileButtonClick}>Edit</button>
+          </div>
+          <div className="profile-edit-button-placement">
+            <LogOutButton className="profile-view-connected-button" />
+          </div>
         </div>
         <div className="profile-info-container">
           <div className="profile-info-header">
@@ -48,12 +85,17 @@ class MyProfile extends Component {
             <button className="profile-view-connected-button">View</button>
           </div>
         </div>
-
-        <LogOutButton className="log-in" />
         <pre>
-          {JSON.stringify(this.props.user, null, 2)}
+          {JSON.stringify(this.state, null, 2)}
         </pre>
+
       </div>
+      : <div><p onClick={this.editProfileButtonClick}>special modal</p>
+      
+      <pre>
+          {JSON.stringify(this.state, null, 2)}
+        </pre></div>
+}</>
     )
   }
 }
