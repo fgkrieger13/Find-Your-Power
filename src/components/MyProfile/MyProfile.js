@@ -1,41 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-
+import EditProfileModal from '../EditProfileModal/EditProfileModal';
 
 class MyProfile extends Component {
 
-  state = {
-    edit: false,
-    first_name: '',
-    last_name: '',
-    username: '',
-    zipcode: '',
-    skills: '',
-    services: '',
-    roles: '',
-    bio: '',
-  }
-
-  editProfileButtonClick = () => {
-    console.log(this.state.edit)
-    this.setState({
-      ...this.state,
-      edit: !this.state.edit,
-      first_name: this.props.user.first_name,
-      last_name: this.props.user.last_name,
-      username: this.props.user.username,
-      zipcode: this.props.user.zipcode,
-      skills: this.props.user.skills,
-      services: this.props.user.services,
-      roles: this.props.user.roles,
-      bio: this.props.user.bio,
-    })
-  }
-
   render() {
     return (
-      <>{!this.state.edit ? 
       <div className="profile-container">
         <div className="profile-header-container">
           <div className="profile-photo">
@@ -56,7 +27,7 @@ class MyProfile extends Component {
         </div>
         <div className="profile-button-placement">
           <div className="profile-edit-button-placement">
-            <button className="profile-view-connected-button" onClick={this.editProfileButtonClick}>Edit</button>
+          <EditProfileModal state={this.props.user} />
           </div>
           <div className="profile-edit-button-placement">
             <LogOutButton className="profile-view-connected-button" />
@@ -90,12 +61,7 @@ class MyProfile extends Component {
         </pre>
 
       </div>
-      : <div><p onClick={this.editProfileButtonClick}>special modal</p>
-      
-      <pre>
-          {JSON.stringify(this.state, null, 2)}
-        </pre></div>
-}</>
+
     )
   }
 }
