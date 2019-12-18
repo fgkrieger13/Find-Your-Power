@@ -56,7 +56,7 @@ router.put('/deny-connection', (req, res) => {
     })
 })
 
-
+// ---- POST's ----
 // POST new connection to the database
 router.post('/', (req, res, next) => { 
   const queryText = `INSERT INTO "connections" ("connecting_id", "connecting_to_id", "connector_id", "message")

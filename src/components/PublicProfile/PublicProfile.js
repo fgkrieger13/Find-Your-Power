@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import InitiateConnection from '../InitiateConnection/InitiateConnection';
 
 
 class PublicProfile extends Component {
@@ -43,9 +44,11 @@ class PublicProfile extends Component {
           <p className="profile-bio">{this.props.profile.bio}</p>
         </div>
         <div className="profile-button-placement">
-            <button onClick={() => this.initiateConnection(this.props.profile.id)}>
+            <InitiateConnection connectingId={this.props.profile.id}/>
+            {/* <button onClick={() => this.initiateConnection(this.props.profile.id)}
+                className="profile-view-connected-button">
                 Help Connect
-            </button>
+            </button> */}
         </div>
         <div className="profile-info-container">
           <div className="profile-info-header">
