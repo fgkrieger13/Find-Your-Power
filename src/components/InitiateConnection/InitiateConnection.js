@@ -6,13 +6,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {createMuiTheme} from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
     pallete: {
-      primary: {500: '#f29475'}
+        primary: { 500: '#f29475' }
     }
-  })
+})
 
 class initiateConnectionModal extends Component {
 
@@ -33,15 +33,25 @@ class initiateConnectionModal extends Component {
         this.setState({
             ...this.state,
             connection: {
+                ...this.state.connection,
                 connecting_to_id: Number(event.target.value),
-                message: 'HELLO!!'
+            }
+        })
+    }
+
+    addMessage = (event) => {
+        this.setState({
+            ...this.state,
+            connection: {
+                ...this.state.connection,
+                message: event.target.value
             }
         })
     }
 
     handleSendConnectionRequest = (connectingId) => {
         console.log('connecting_id:', connectingId, 'connector_id:', this.props.user.id, 'connecting_to_id:', this.state.connection.connecting_to_id);
-        this.props.dispatch({type: 'SEND_CONNECTION-REQUEST', payload: {connecting_id: connectingId, connecting_to_id: this.state.connection.connecting_to_id, connector_id: this.props.user.id, message: this.state.connection.message}});
+        this.props.dispatch({ type: 'SEND_CONNECTION-REQUEST', payload: { connecting_id: connectingId, connecting_to_id: this.state.connection.connecting_to_id, connector_id: this.props.user.id, message: this.state.connection.message } });
         this.handleClose();
     }
 
@@ -78,6 +88,15 @@ class initiateConnectionModal extends Component {
                                 multiline={true}
                                 type='number'
                                 value={this.state.connection.connecting_to_id}
+                                fullWidth
+                            />
+                            <TextField
+                                onChange={this.addMessage}
+                                color="primary"
+                                margin="normal"
+                                label="message"
+                                multiline={true}
+                                value={this.state.connection.message}
                                 fullWidth
                             />
                         </DialogContent>
