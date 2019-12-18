@@ -58,13 +58,41 @@ router.put('/deny-connection', (req, res) => {
 
 // ---- POST's ----
 // POST new connection to the database
-router.post('/', (req, res, next) => { 
-  const queryText = `INSERT INTO "connections" ("connecting_id", "connecting_to_id", "connector_id", "message")
-  VALUES ($1, $2, $3, $4);`;
-  pool.query(queryText, [req.body.connecting_id, req.body.connecting_to_id, req.body.connector_id, req.body.message])
-    .then(() => res.sendStatus(200))
-    .catch((error) => {console.log('Error in router POST new connection', error)
-     res.sendStatus(500)});
-});
+// router.post('/', (req, res, next) => { 
+//   const queryText = `INSERT INTO "connections" ("connecting_id", "connecting_to_id", "connector_id", "message")
+//   VALUES ($1, $2, $3, $4);`;
+//   pool.query(queryText, [req.body.connecting_id, req.body.connecting_to_id, req.body.connector_id, req.body.message])
+//     .then(() => res.sendStatus(200))
+//     .catch((error) => {console.log('Error in router POST new connection', error)
+//      res.sendStatus(500)});
+// });
+
+router.post('/', async (req, res) => {
+  const connection = await pool.connect();
+  try {
+    await connection.query('BEGIN;')
+    // - amount for withdraw
+    sqlText1 = `SELECT * FROM "connections"
+      WHERE ("connecting_id" = $1 AND "connecting_to_id" = $2) OR ("connecting_id" = $2 AND "connecting_to_id" = $1) AND "active" = 'true';;`
+    sqlText2 = `INSERT INTO "connections" ("connecting_id", "connecting_to_id", "connector_id", "message")
+    VALUES ($1, $2, $3, $4);`
+    activeConnection = await connection.query(sqlText1, [req.body.connecting_id, req.body.connecting_to_id])
+    console.log('active connection:', activeConnection.rows);
+    if(activeConnection.rows.length < 1){
+      await connection.query(sqlText2, [req.body.connecting_id, req.body.connecting_to_id, req.body.connector_id, req.body.message])
+      await connection.query('COMMIT;')
+      res.sendStatus(200)
+    }
+    else {
+      await connection.query('COMMIT;')
+      res.sendStatus(406)
+    }
+  } catch (err) {
+    await connection.query('ROLLBACK;')
+    res.sendStatus(500)
+  } finally {
+    connection.release(); // always runs, super important 
+  }
+})
 
 module.exports = router;
