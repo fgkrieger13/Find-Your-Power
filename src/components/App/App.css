@@ -4,11 +4,13 @@ body {
     margin: 0px;
 }
 
-h3, h2 {
-    color: #583045
+h4, h3, h2 {
+    color: #583045;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 p {
+    font-family: 'Tahoma', sans-serif;
     color: #414141;
 }
 
@@ -211,4 +213,124 @@ h1 {
 }
 .profile-edit-button-placement {
     margin-left: 10px;
+}
+
+.activity-pending-connections-container {
+    background-color: #ffffff;
+    box-shadow: 2px 2px 10px #88888888;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 45px;
+}
+
+
+.activity-people-who-connected-you-container {
+    background-color: #ffffff;
+    box-shadow: 2px 2px 10px #88888888;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 45px;
+}
+
+.activity-people-you-connected-container {
+    background-color: #ffffff;
+    box-shadow: 2px 2px 10px #88888888;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 45px;
+}
+
+.activity-pending-avatar {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.activity-pending-avatar-small {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+.activity-pending-connecting-avatar {
+    text-align: center;
+}
+
+.activity-pending-single-row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid #f29475 1.5px;
+    margin-right: 50px;
+    justify-content: space-between;
+}
+.activity-pending-leftmost {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.activity-pending-message {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #9e6767;
+    border-radius: 4px;
+    max-width: 500px;
+    margin-left: 30px;
+    padding-left: 30px;
+    margin-right: -10px;
+    margin-bottom: 20px;
+}
+
+.activity-pending-button-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-right: 40px;
+}
+
+.activity-suggested-by {
+    padding-top: 30px;
+}
+
+.activity-pending-accept-button {
+    background-color: #f29475;
+    width: 100px;
+    height: 40px;
+    padding-top: 3px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #f8f8f8;
+    box-shadow: 2px 2px 10px #88888848;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.activity-pending-cancel-button {
+    background-color: #9e6767;
+    width: 100px;
+    height: 40px;
+    padding-top: 3px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #f8f8f8;
+    box-shadow: 2px 2px 10px #88888848;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
