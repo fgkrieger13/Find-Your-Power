@@ -38,12 +38,21 @@ function* fetchUserActivity() {
   }
 }
 
+function* sendConnectionRequestSaga(action) {
+  try {
+    yield axios.post('/api/activity', action.payload);    
+  } catch (error) {
+    console.log('Activity post request failed', error);
+  }
+}
+
 
 function* userSaga() {
   yield takeLatest('FETCH_USER_ACTIVITY', fetchUserActivity);
   yield takeLatest('CHANGE_CONNECTING_ACCEPTED', connectingAccepted);
   yield takeLatest('CHANGE_CONNECTING_TO_ACCEPTED', connectingToAccepted);
   yield takeLatest('DENY_CONNECTION', denyConnection);
+  yield takeLatest('SEND_CONNECTION-REQUEST', sendConnectionRequestSaga);
 
 }
 
