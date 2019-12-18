@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {createMuiTheme} from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
-  pallete: {
-    primary: {500: '#f29475'}
-  }
-})
 
 class EditProfileModal extends Component {
   state = {
     open: false,
+    id: this.props.user.id,
+    username: '',
+    first_name: '',
+    last_name: '',
+    zipcode: '',
+    skills: '',
+    services: '',
+    roles: '',
+    bio: '',
   }
 
   handleClickOpen = () => {
     console.log(this.state.open)
     this.setState({
-      open: true
+      ...this.state,
+      open: true,
+      username: this.props.user.username,
+      first_name: this.props.user.first_name,
+      last_name: this.props.user.last_name,
+      zipcode: this.props.user.zipcode,
+      skills: this.props.user.skills,
+      services: this.props.user.services,
+      roles: this.props.user.roles,
+      bio: this.props.user.bio,
     })
   };
 
@@ -31,6 +42,21 @@ class EditProfileModal extends Component {
       open: false
     })
   };
+
+  handleSave = () => {
+    this.props.dispatch({ type: 'UPDATE_USER_PROFILE', payload: this.state })
+    this.setState({
+      ...this.state,
+      open: false
+    })
+  }
+
+  handleInputChangeFor = propertyName => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -41,75 +67,87 @@ class EditProfileModal extends Component {
           <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
           <DialogContent>
             <TextField
-              color="primary"
+              onChange={this.handleInputChangeFor('username')}
               margin="normal"
               label="Email"
               multiline={true}
-              value={this.props.state.username}
+              value={this.state.username}
               fullWidth
             />
             <TextField
+              onChange={this.handleInputChangeFor('first_name')}
               margin="normal"
               label="First Name"
               multiline={true}
-              value={this.props.state.first_name}
+              value={this.state.first_name}
               fullWidth
             />
             <TextField
+              onChange={this.handleInputChangeFor('last_name')}
               margin="normal"
               label="Last Name"
               multiline={true}
-              value={this.props.state.last_name}
+              value={this.state.last_name}
               fullWidth
             />
             <TextField
+              onChange={this.handleInputChangeFor('zipcode')}
               margin="normal"
               label="Zipcode"
               multiline={true}
-              value={this.props.state.zipcode}
+              value={this.state.zipcode}
               fullWidth
             />
             <TextField
+              onChange={this.handleInputChangeFor('skills')}
               margin="normal"
               label="Skills"
               multiline={true}
-              value={this.props.state.skills}
+              value={this.state.skills}
               fullWidth
             />
             <TextField
+              onChange={this.handleInputChangeFor('services')}
               margin="normal"
               label="Services"
               multiline={true}
-              value={this.props.state.services}
+              value={this.state.services}
               fullWidth
             />
             <TextField
+              onChange={this.handleInputChangeFor('roles')}
               margin="normal"
               label="Current Roles"
               multiline={true}
-              value={this.props.state.roles}
+              value={this.state.roles}
               fullWidth
             />
             <TextField
+              onChange={this.handleInputChangeFor('bio')}
               margin="normal"
               label="Bio"
               multiline={true}
-              value={this.props.state.bio}
+              value={this.state.bio}
               fullWidth
             />
           </DialogContent>
           <DialogActions>
-            <button className="profile-edit-cancel-button" onClick={this.handleClose} color="primary">
+            <button className="profile-edit-cancel-button" onClick={this.handleClose}>
               Cancel
           </button>
-            <button className="profile-view-connected-button" onClick={this.handleClose} color="primary">
+            <button className="profile-view-connected-button" onClick={this.handleSave}>
               Save
           </button>
           </DialogActions>
         </Dialog>
-
+        {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
       </div>
     );
   }
 }
-export default (EditProfileModal);
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(EditProfileModal);

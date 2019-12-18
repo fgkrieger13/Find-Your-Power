@@ -27,7 +27,7 @@ class MyProfile extends Component {
         </div>
         <div className="profile-button-placement">
           <div className="profile-edit-button-placement">
-          <EditProfileModal state={this.props.user} />
+          <EditProfileModal />
           </div>
           <div className="profile-edit-button-placement">
             <LogOutButton className="profile-view-connected-button" />
