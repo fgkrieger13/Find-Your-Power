@@ -10,34 +10,42 @@ class PublicProfile extends Component {
     this.props.dispatch({type: 'FETCH_PROFILE', payload: {profileId: id}})
   }
 
+  viewConnections = () => {
+
+  }
+
+  initiateConnection = (connectingId) => {
+    console.log('connecting_id:', connectingId, 'connector_id:', this.props.user.id);
+    
+  }
+
   render() {
     return (
     <>
-      {/* <div className="profile-container">
+    {this.props.profile ? 
+    
+      <div className="profile-container">
         <div className="profile-header-container">
           <div className="profile-photo">
 
           </div>
           <div className="profile-name-email-container">
             <div className="profile-name">
-              <h2>{this.props.user.first_name} {this.props.user.last_name}</h2>
+              <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
             </div>
             <div className="profile-email">
-              <h3>{this.props.user.username}</h3>
+              <h3>{this.props.profile.username}</h3>
             </div>
           </div>
         </div>
         <div className="profile-bio-container">
           <h3>Bio:</h3>
-          <p className="profile-bio">{this.props.user.bio}</p>
+          <p className="profile-bio">{this.props.profile.bio}</p>
         </div>
         <div className="profile-button-placement">
-          <div className="profile-edit-button-placement">
-            <button className="profile-view-connected-button" onClick={this.editProfileButtonClick}>Edit</button>
-          </div>
-          <div className="profile-edit-button-placement">
-            <LogOutButton className="profile-view-connected-button" />
-          </div>
+            <button onClick={() => this.initiateConnection(this.props.profile.id)}>
+                Help Connect
+            </button>
         </div>
         <div className="profile-info-container">
           <div className="profile-info-header">
@@ -46,27 +54,28 @@ class PublicProfile extends Component {
           <div className="profile-info-copy">
             <div className="profile-info-copy-sections">
               <h3 className="profile-info-current-roles">Current Roles:</h3>
-              <p>{this.props.user.roles}</p>
+              <p>{this.props.profile.roles}</p>
             </div>
             <div className="profile-info-copy-sections">
               <h3>Services:</h3>
-              <p>{this.props.user.services}</p>
+              <p>{this.props.profile.services}</p>
             </div>
             <div className="profile-info-copy-sections">
               <h3>Skills:</h3>
-              <p>{this.props.user.skills}</p>
+              <p>{this.props.profile.skills}</p>
             </div>
           </div>
           <div className="profile-connected-summary-container">
             <h1>Connected 2,000 people</h1>
-            <button className="profile-view-connected-button">View</button>
+            <button onClick={this.viewConnections}
+            className="profile-view-connected-button">
+                View
+            </button>
           </div>
         </div>
-        <pre>
-          {JSON.stringify(this.state, null, 2)}
-        </pre>
-
-      </div> */}
+      </div>
+      : ''
+      }
       <pre>{JSON.stringify(this.props.profile, null, 2)}</pre>
     </>
     )
@@ -75,7 +84,7 @@ class PublicProfile extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  profile: state.publicProfileReducer,
+  profile: state.publicProfileReducer[0],
 });
 
 export default connect(mapStateToProps)(PublicProfile);
