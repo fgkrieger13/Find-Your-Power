@@ -57,4 +57,14 @@ router.put('/deny-connection', (req, res) => {
 })
 
 
+// POST new connection to the database
+router.post('/', (req, res, next) => { 
+  const queryText = `INSERT INTO "connections" ("connecting_id", "connecting_to_id", "connector_id", "message")
+  VALUES ($1, $2, $3, $4);`;
+  pool.query(queryText, [req.body.connecting_id, req.body.connecting_to_id, req.body.connector_id, req.body.message])
+    .then(() => res.sendStatus(200))
+    .catch((error) => {console.log('Error in router POST new connection', error)
+     res.sendStatus(500)});
+});
+
 module.exports = router;
