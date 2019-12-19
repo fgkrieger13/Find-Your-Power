@@ -208,6 +208,14 @@ h1 {
     padding: 15px;
     text-align: center;
 }
+.underline {
+  border-bottom: solid #f29475 1px;
+}
+
+.profile-connected-count-container {
+  max-width: 600px;
+  text-align: center;
+}
 
 .profile-button-placement {
     margin-top: 15px;
