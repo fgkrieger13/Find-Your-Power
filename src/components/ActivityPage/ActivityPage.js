@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ConnectionMade from '../ConnectionMade/ConnectionMade'
 import StatusModalConnector from '../StatusModalConnector/StatusModalConnector';
 
 
