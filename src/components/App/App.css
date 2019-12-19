@@ -2,6 +2,7 @@ body {
     background-color: #eeeeee;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
+    width: 100%;
 }
 
 h4, h3, h2 {
@@ -164,6 +165,7 @@ h1 {
     border-radius: 4px;
     margin-top: 45px;
 }
+
 .profile-view-connected-button {
     background-color: #f29475;
     width: 80px;
@@ -178,6 +180,7 @@ h1 {
     border: none;
     cursor: pointer;
 }
+
 .profile-edit-cancel-button {
     background-color: #9e6767;
     width: 80px;
@@ -205,12 +208,14 @@ h1 {
     padding: 15px;
     text-align: center;
 }
+
 .profile-button-placement {
     margin-top: 15px;
     margin-left: 60px;
     display: flex;
     flex-direction: row;
 }
+
 .profile-edit-button-placement {
     margin-left: 10px;
 }
@@ -225,8 +230,7 @@ h1 {
     margin-top: 45px;
 }
 
-
-.activity-people-who-connected-you-container {
+.activity-connected-you-container {
     background-color: #ffffff;
     box-shadow: 2px 2px 10px #88888888;
     width: 100%;
@@ -260,17 +264,25 @@ h1 {
     border-radius: 50%;
     margin-top: 10px;
 }
+
 .activity-pending-connecting-avatar {
     text-align: center;
+}
+
+.activity-title {
+    padding-bottom: 15px;
 }
 
 .activity-pending-single-row {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     border-bottom: solid #f29475 1.5px;
-    margin-right: 50px;
+    margin-right: 40px;
+    margin-top: 20px;
     justify-content: space-between;
 }
+
 .activity-pending-leftmost {
     display: flex;
     flex-direction: column;
@@ -279,15 +291,16 @@ h1 {
 
 .activity-pending-message {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    align-content: flex-start;
     border-style: solid;
     border-width: 1px;
     border-color: #9e6767;
     border-radius: 4px;
     max-width: 500px;
-    margin-left: 30px;
-    padding-left: 30px;
+    min-width: 500px;
+    margin-left: 20px;
+    padding: 20px;
     margin-right: -10px;
     margin-bottom: 20px;
 }
@@ -333,4 +346,12 @@ h1 {
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+.activity-connected-you-with-container {
+    padding: 15px;
+}
+
+tr, td {
+    padding: 10px;
 }
