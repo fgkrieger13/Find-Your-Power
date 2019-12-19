@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // ---- GET's ---- 
-// GET all connections for one user
+// GET all connections for logged in user private view
 router.get('/', (req, res, next) => { 
   const queryText = `SELECT "connections"."id" AS "connections_id", "connecting_id", "connecting_to_id", "connector_id", "message", "connecting_accepted", "connecting_to_accepted", "connections"."active",
     (SELECT "user"."first_name" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_first_name", (SELECT "user"."last_name" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_last_name", (SELECT "user"."username" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_username", (SELECT "user"."avatar" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_avatar", 
@@ -58,15 +58,6 @@ router.put('/deny-connection', (req, res) => {
 
 // ---- POST's ----
 // POST new connection to the database
-// router.post('/', (req, res, next) => { 
-//   const queryText = `INSERT INTO "connections" ("connecting_id", "connecting_to_id", "connector_id", "message")
-//   VALUES ($1, $2, $3, $4);`;
-//   pool.query(queryText, [req.body.connecting_id, req.body.connecting_to_id, req.body.connector_id, req.body.message])
-//     .then(() => res.sendStatus(200))
-//     .catch((error) => {console.log('Error in router POST new connection', error)
-//      res.sendStatus(500)});
-// });
-
 router.post('/', async (req, res) => {
   const connection = await pool.connect();
   try {
