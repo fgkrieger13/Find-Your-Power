@@ -38,9 +38,10 @@ class StatusModalConnector extends Component {
                     </button>
           {this.props.activity ?
             <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-              <DialogTitle id="form-dialog-title">Connection Status</DialogTitle>
+              <div className="activity-connected-status-modal">
+              <DialogTitle><div className="underline"><h1>Connection Status</h1></div></DialogTitle>
               <DialogContent>
-                <h3>You Connected {this.props.activity.connecting_first_name} and {this.props.activity.connecting_to_first_name}</h3>
+                <h2>You Connected {this.props.activity.connecting_first_name} and {this.props.activity.connecting_to_first_name}</h2>
                 <table>
                   <tbody>
                     <tr>
@@ -76,6 +77,7 @@ class StatusModalConnector extends Component {
                   </tbody>
                 </table>
               </DialogContent>
+              </div>
               {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
             </Dialog>
             : ''
