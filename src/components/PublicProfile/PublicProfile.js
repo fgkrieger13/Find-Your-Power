@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import InitiateConnection from '../InitiateConnection/InitiateConnection';
+import CountConnections from '../CountConnections/CountConnections';
 
 
 class PublicProfile extends Component {
@@ -17,7 +18,6 @@ class PublicProfile extends Component {
 
   initiateConnection = (connectingId) => {
     console.log('connecting_id:', connectingId, 'connector_id:', this.props.user.id);
-    
   }
 
   render() {
@@ -68,13 +68,7 @@ class PublicProfile extends Component {
               <p>{this.props.profile.skills}</p>
             </div>
           </div>
-          <div className="profile-connected-summary-container">
-            <h1>Connected 2,000 people</h1>
-            <button onClick={this.viewConnections}
-            className="profile-view-connected-button">
-                View
-            </button>
-          </div>
+            <CountConnections profile={this.props.profile} />
         </div>
       </div>
       : ''
