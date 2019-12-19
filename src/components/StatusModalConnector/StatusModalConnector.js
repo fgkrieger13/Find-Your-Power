@@ -35,7 +35,7 @@ class StatusModalConnector extends Component {
         <td>
           <button className="profile-view-connected-button" onClick={this.handleClickOpen}>
             Status
-                    </button>
+          </button>
           {this.props.activity ?
             <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
               <DialogTitle id="form-dialog-title">Connection Status</DialogTitle>
