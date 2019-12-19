@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ConnectionMade from '../ConnectionMade/ConnectionMade'
+import StatusModalConnector from '../StatusModalConnector/StatusModalConnector';
 
 
 class ActivityPage extends Component {
@@ -105,7 +106,6 @@ class ActivityPage extends Component {
                           </>
                         }
                         <td><button className="activity-pending-accept-button">Status</button></td>
-
                       </tr>
                     )}
               </tbody>
@@ -125,7 +125,7 @@ class ActivityPage extends Component {
                     <td><h2>connected with</h2></td>
                     <td><img className="activity-pending-avatar-small" src={activity.connecting_to_avatar} /></td>
                     <td><h3>{activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3></td>
-                    <td><button className="activity-pending-accept-button">Status</button></td>
+                    <StatusModalConnector activity={activity}/>
                   </tr>
                 )}
               </tbody>
