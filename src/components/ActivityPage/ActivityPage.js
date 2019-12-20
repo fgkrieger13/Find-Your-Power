@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StatusModalConnector from '../StatusModalConnector/StatusModalConnector';
+import { withRouter } from 'react-router-dom';
 
 
 class ActivityPage extends Component {
@@ -21,6 +22,11 @@ class ActivityPage extends Component {
     this.props.dispatch({ type: 'DENY_CONNECTION', payload: { connections_id: id } })
   }
 
+  handleNameClick = (id) => {
+    this.props.dispatch({ type: 'FETCH_PROFILE', payload: id })
+    this.props.history.push(`/profile/${id}`)
+  }
+
   render() {
     return (
       <div className="activity-container">
@@ -37,7 +43,10 @@ class ActivityPage extends Component {
                           <img className="activity-pending-avatar" src={activity.connecting_to_avatar} />
                         </div>
                         {activity.connecting_id === this.props.user.id ?
-                          <div className="activity-pending-title"> <h3>{activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3> </div>
+                          <div className="activity-pending-title">
+                            <h3 onClick={() => this.handleNameClick(activity.connecting_to_id)}>
+                              {activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3>
+                          </div>
                           :
                           <h3>{activity.connecting_first_name} {activity.connecting_last_name}</h3>
                         }
@@ -55,7 +64,8 @@ class ActivityPage extends Component {
                         <p>{activity.message}</p>
                       </div>
                       <div>
-                        {(activity.connecting_id === this.props.user.id && !activity.connecting_accepted) || (activity.connecting_to_id === this.props.user.id && !activity.connecting_to_accepted) ?
+                        {(activity.connecting_id === this.props.user.id && !activity.connecting_accepted) ||
+                          (activity.connecting_to_id === this.props.user.id && !activity.connecting_to_accepted) ?
                           <div className="activity-pending-button-container">
                             <button className="activity-pending-accept-button" onClick={
                               activity.connecting_id === this.props.user.id ?
@@ -65,7 +75,8 @@ class ActivityPage extends Component {
                             }>
                               Accept
                           </button>
-                            <button className="activity-pending-cancel-button" onClick={() => this.denyConnection(activity.connections_id)}>
+                            <button className="activity-pending-cancel-button"
+                              onClick={() => this.denyConnection(activity.connections_id)}>
                               Deny
                           </button>
 
@@ -124,7 +135,7 @@ class ActivityPage extends Component {
                     <td><h2>connected with</h2></td>
                     <td><img className="activity-pending-avatar-small" src={activity.connecting_to_avatar} /></td>
                     <td><h3>{activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3></td>
-                    <StatusModalConnector activity={activity}/>
+                    <StatusModalConnector activity={activity} />
                   </tr>
                 )}
               </tbody>
@@ -147,4 +158,4 @@ const mapStateToProps = state => ({
   userActivity: state.userActivityReducer,
 });
 
-export default connect(mapStateToProps)(ActivityPage);
+export default withRouter(connect(mapStateToProps)(ActivityPage));
