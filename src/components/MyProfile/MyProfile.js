@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 class MyProfile extends Component {
 
@@ -59,6 +60,12 @@ class MyProfile extends Component {
         <pre>
           {JSON.stringify(this.state, null, 2)}
         </pre>
+
+
+
+      <ImageUpload />
+
+
 
       </div>
 

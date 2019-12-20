@@ -5,6 +5,7 @@
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@material-ui/core": "^4.8.0",
+    "aws-sdk": "^2.594.0",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "cookie-session": "^2.0.0-beta.3",
@@ -16,6 +17,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-dropzone-s3-uploader": "^1.1.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1",
