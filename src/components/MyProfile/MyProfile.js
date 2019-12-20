@@ -11,7 +11,7 @@ class MyProfile extends Component {
       <div className="profile-container">
         <div className="profile-header-container">
           <div className="profile-photo">
-            <p className="profile-photo-text" onClick={() => { }}>add a photo</p>
+          <ImageUpload/>
           </div>
           <div className="profile-name-email-container">
             <div className="profile-name">
@@ -63,7 +63,6 @@ class MyProfile extends Component {
 
 
 
-      <ImageUpload />
 
 
 

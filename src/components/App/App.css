@@ -100,6 +100,21 @@ h1 {
     cursor: pointer;
 }
 
+.inner-drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.inner-drop-text {
+    width: 50px;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    padding-left: 5px;
+}
+
 .profile-photo-text {
     color: white;
     text-align: center;
