@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import userActivitySaga from './userActivitySaga';
 import editUserProfileSaga from './editUserProfileSaga';
 import publicProfileSaga from './publicProfileSaga';
+import searchSaga from './searchSaga';
 
 
 // rootSaga is the primary saga.
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     userSaga(),
     userActivitySaga(),
     publicProfileSaga(),
+    searchSaga(),
   ]);
 }
