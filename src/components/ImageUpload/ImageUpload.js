@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader';
 
 
+
+const dropStyle = {
+    border: '1px solid #f29475',
+    borderRadius: '100px',
+    width: '130px',
+    height: '130px',
+}
+
 class ImageUpload extends Component {
 
     handleFinishedUpload = info => {
@@ -20,12 +28,20 @@ class ImageUpload extends Component {
         }
         const s3Url = 'https://findyourpowerscytalebucket.s3.amazonaws.com'
 
+        const innerDropElement = (
+            <div className="inner-drop">
+                <p className="inner-drop-text">add a photo</p>
+            </div>
+        )
+
         return (
             <DropzoneS3Uploader
+                children={innerDropElement}
                 onFinish={this.handleFinishedUpload}
                 s3Url={s3Url}
                 maxSize={1024 * 1024 * 5}
                 upload={uploadOptions}
+                style={dropStyle}
             />
         )
     }
