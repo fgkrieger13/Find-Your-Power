@@ -5,6 +5,7 @@ import user from './userReducer';
 import userActivityReducer from './userActivityReducer';
 import publicProfileReducer from './publicProfileReducer';
 import publicActivityReducer from './publicActivityReducer';
+import liveSearchReducer from './liveSearchReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   userActivityReducer,
   publicProfileReducer,
   publicActivityReducer,
+  liveSearchReducer,
 });
 
 export default rootReducer;
