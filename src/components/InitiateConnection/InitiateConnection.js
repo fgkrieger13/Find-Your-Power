@@ -75,10 +75,10 @@ class initiateConnectionModal extends Component {
             <>
                 <div>
                     <button className="profile-view-connected-button" onClick={this.handleClickOpen}>
-                        Help Connect
+                        Make an Introduction
                     </button>
                     <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">Help person connect</DialogTitle>
+                        <DialogTitle id="form-dialog-title">Select who you would like to introduce</DialogTitle>
                         <DialogContent>
                             <TextField
                                 onChange={this.searchUsers}
