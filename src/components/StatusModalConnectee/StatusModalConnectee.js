@@ -6,95 +6,103 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 class StatusModalConnectee extends Component {
 
-  state = {
-    open: false,
-  }
+    state = {
+        open: false,
+    }
 
-  componentDidMount() {
+    componentDidMount() {
 
-  }
+    }
 
-  handleClickOpen = () => {
-    console.log(this.state.open)
-    this.setState({
-      ...this.state,
-      open: true
-    })
-  };
+    handleClickOpen = () => {
+        console.log(this.state.open)
+        this.setState({
+            ...this.state,
+            open: true
+        })
+    };
 
-  handleClose = () => {
-    this.setState({
-      ...this.state,
-      open: false
-    })
-  };
+    handleClose = () => {
+        this.setState({
+            ...this.state,
+            open: false
+        })
+    };
 
-  render() {
-    return (
-      <>
-        <td>
-          <button className="profile-view-connected-button" onClick={this.handleClickOpen}>
-            Status
+    render() {
+        return (
+            <>
+                <td>
+                    <button className="profile-view-connected-button" onClick={this.handleClickOpen}>
+                        Status
           </button>
-          {this.props.activity ?
-            <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-              <div className="activity-connected-status-modal">
-              <DialogTitle><div className="underline"><h1>Connection Status</h1></div></DialogTitle>
-              <DialogContent>
-                <h2>{this.props.activity.connector_first_name} connected you and {
-                    (this.props.activity.connecting_to_id === this.props.user.id) ? this.props.activity.connecting_first_name
-                    : this.props.activity.connecting_to_first_name
-                }
-                </h2>
-                {/* <table>
-                  <tbody>
-                    <tr>
-                      <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_avatar} /></td>
-                      <td>{this.props.activity.connecting_first_name} {this.props.activity.connecting_last_name}</td>
-                      <td>{this.props.activity.connecting_accepted ?
-                        <p>Accepted Connection</p>
-                        : <p>Response Pending</p>
-                      }</td>
-                    </tr>
-                    <tr>
-                      <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_to_avatar} /></td>
-                      <td>{this.props.activity.connecting_to_first_name} {this.props.activity.connecting_to_last_name}</td>
-                      <td>{this.props.activity.connecting_to_accepted ?
-                        <p>Accepted Connection</p>
-                        : <p>Response Pending</p>
-                      }</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_avatar} /></td>
-                      <td>{this.props.activity.connecting_first_name} {this.props.activity.connecting_last_name}</td>
-                      <td>Kickback Pending</td>
-                    </tr>
-                    <tr>
-                      <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_to_avatar} /></td>
-                      <td>{this.props.activity.connecting_to_first_name} {this.props.activity.connecting_to_last_name}</td>
-                      <td>Kickback Pending</td>
-                    </tr>
-                  </tbody>
-                </table> */}
-              </DialogContent>
-              </div>
-              {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-            </Dialog>
-            : ''
-          }
-        </td>
-      </>
-    )
-  }
+                    {this.props.activity ?
+                        <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                            <div className="activity-connected-status-modal">
+                                <DialogTitle><div className="underline"><h1>Connection Status</h1></div></DialogTitle>
+                                <DialogContent>
+                                    <h2>{this.props.activity.connector_first_name} connected you and {
+                                        (this.props.activity.connecting_to_id === this.props.user.id) ? this.props.activity.connecting_first_name
+                                            : this.props.activity.connecting_to_first_name
+                                    }
+                                    </h2>
+                                    <table>
+                                        {this.props.activity.connecting_to_id === this.props.user.id ?
+                                            <tbody>
+                                                <tr>
+                                                    <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_to_avatar} /></td>
+                                                    <td>{this.props.activity.connecting_to_first_name} {this.props.activity.connecting_to_last_name}</td>
+                                                    <td>{this.props.activity.connecting_to_accepted ?
+                                                        <p>Accepted Connection</p>
+                                                        : <p>Response Pending</p>
+                                                    }</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_avatar} /></td>
+                                                    <td>{this.props.activity.connecting_first_name} {this.props.activity.connecting_last_name}</td>
+                                                    <td>{this.props.activity.connecting_accepted ?
+                                                        <p>Accepted Connection</p>
+                                                        : <p>Response Pending</p>
+                                                    }</td>
+                                                </tr>
+                                            </tbody>
+                                            :
+                                            <tbody>
+                                                <tr>
+                                                    <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_avatar} /></td>
+                                                    <td>{this.props.activity.connecting_first_name} {this.props.activity.connecting_last_name}</td>
+                                                    <td>{this.props.activity.connecting_accepted ?
+                                                        <p>Accepted Connection</p>
+                                                        : <p>Response Pending</p>
+                                                    }</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_to_avatar} /></td>
+                                                    <td>{this.props.activity.connecting_to_first_name} {this.props.activity.connecting_to_last_name}</td>
+                                                    <td>{this.props.activity.connecting_to_accepted ?
+                                                        <p>Accepted Connection</p>
+                                                        : <p>Response Pending</p>
+                                                    }</td>
+                                                </tr>
+                                            </tbody>
+                                        }
+
+                                    </table>
+                                </DialogContent>
+                            </div>
+                            {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+                        </Dialog>
+                        : ''
+                    }
+                </td>
+            </>
+        )
+    }
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  profile: state.publicProfileReducer[0],
+    user: state.user,
+    profile: state.publicProfileReducer[0],
 });
 
 export default connect(mapStateToProps)(StatusModalConnectee);
