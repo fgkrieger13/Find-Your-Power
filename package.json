@@ -4,6 +4,9 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "@material-ui/core": "^4.8.0",
     "aws-sdk": "^2.594.0",
     "axios": "^0.19.0",
@@ -18,6 +21,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-dropzone-s3-uploader": "^1.1.0",
+    "react-fontawesome": "^1.7.1",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1",

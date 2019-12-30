@@ -4,6 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+
 class StatusModalConnectee extends Component {
 
     state = {
@@ -86,8 +87,15 @@ class StatusModalConnectee extends Component {
                                                 </tr>
                                             </tbody>
                                         }
-
                                     </table>
+                                    <h3>
+                                        We encourage you to thank {this.props.activity.connector_first_name} for connecting you with 
+                                        {(this.props.activity.connecting_to_id === this.props.user.id) ? ' ' + this.props.activity.connecting_first_name + ' ' + this.props.activity.connecting_last_name
+                                            : ' ' + this.props.activity.connecting_to_first_name + ' ' + this.props.activity.connecting_to_last_name}!
+                                    </h3>
+                                    <h2>
+                                        Amount: <input placeholder="amount"/> through <button>Stripe</button>
+                                    </h2>
                                 </DialogContent>
                             </div>
                             {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
