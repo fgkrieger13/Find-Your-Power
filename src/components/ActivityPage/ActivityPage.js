@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StatusModalConnector from '../StatusModalConnector/StatusModalConnector';
+import StatusModalConnectee from '../StatusModalConnectee/StatusModalConnectee';
 import { withRouter } from 'react-router-dom';
 
 
@@ -115,7 +116,7 @@ class ActivityPage extends Component {
                             <td><h3>{activity.connecting_first_name} {activity.connecting_last_name}</h3></td>
                           </>
                         }
-                        <td><button className="activity-pending-accept-button">Status</button></td>
+                        <StatusModalConnectee activity={activity}/>
                       </tr>
                     )}
               </tbody>
