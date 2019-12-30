@@ -1,7 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const { checkConnectingAuthorized, checkConnectingToAuthorized } = require('../modules/authorization-middleware');
+const { checkConnectingAuthorized, checkConnectingToAuthorized, checkAuthorizationToDeny } = require('../modules/authorization-middleware');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
@@ -48,7 +48,7 @@ router.put('/connecting-to-accept', rejectUnauthenticated, checkConnectingToAuth
     })
 })
 // UPDATE deny connection
-router.put('/deny-connection', rejectUnauthenticated, (req, res) => {
+router.put('/deny-connection', rejectUnauthenticated, checkAuthorizationToDeny, (req, res) => {
   const queryText = `UPDATE "connections"
     SET "active" = false
     WHERE "id" = $1;`;
