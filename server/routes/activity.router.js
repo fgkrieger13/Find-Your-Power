@@ -1,10 +1,14 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { checkConnectingAuthorized, checkConnectingToAuthorized, checkAuthorizationToDeny } = require('../modules/authorization-middleware');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
+
 
 // ---- GET's ---- 
 // GET all connections for logged in user private view
-router.get('/', (req, res, next) => { 
+router.get('/', rejectUnauthenticated, (req, res, next) => { 
   const queryText = `SELECT "connections"."id" AS "connections_id", "connecting_id", "connecting_to_id", "connector_id", "message", "connecting_accepted", "connecting_to_accepted", "connections"."active",
     (SELECT "user"."first_name" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_first_name", (SELECT "user"."last_name" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_last_name", (SELECT "user"."username" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_username", (SELECT "user"."avatar" FROM "user" WHERE "user"."id" = "connections"."connector_id") AS "connector_avatar", 
     (SELECT "user"."first_name" FROM "user" WHERE "user"."id" = "connections"."connecting_id") AS "connecting_first_name", (SELECT "user"."last_name" FROM "user" WHERE "user"."id" = "connections"."connecting_id") AS "connecting_last_name", (SELECT "user"."username" FROM "user" WHERE "user"."id" = "connections"."connecting_id") AS "connecting_username", (SELECT "user"."avatar" FROM "user" WHERE "user"."id" = "connections"."connecting_id") AS "connecting_avatar", 
@@ -20,7 +24,7 @@ router.get('/', (req, res, next) => {
 
 // ---- PUT's ----
 // UPDATE connecting_accepted to true
-router.put('/connecting-accept', (req, res) => {
+router.put('/connecting-accept', rejectUnauthenticated, checkConnectingAuthorized, (req, res) => {
   const queryText = `UPDATE "connections"
     SET "connecting_accepted" = true
     WHERE "id" = $1;`;
@@ -32,7 +36,7 @@ router.put('/connecting-accept', (req, res) => {
     })
 })
 // UPDATE connecting_to_accepted to true
-router.put('/connecting-to-accept', (req, res) => {
+router.put('/connecting-to-accept', rejectUnauthenticated, checkConnectingToAuthorized, (req, res) => {
   const queryText = `UPDATE "connections"
     SET "connecting_to_accepted" = true
     WHERE "id" = $1;`;
@@ -44,7 +48,7 @@ router.put('/connecting-to-accept', (req, res) => {
     })
 })
 // UPDATE deny connection
-router.put('/deny-connection', (req, res) => {
+router.put('/deny-connection', rejectUnauthenticated, checkAuthorizationToDeny, (req, res) => {
   const queryText = `UPDATE "connections"
     SET "active" = false
     WHERE "id" = $1;`;
@@ -58,7 +62,7 @@ router.put('/deny-connection', (req, res) => {
 
 // ---- POST's ----
 // POST new connection to the database
-router.post('/', async (req, res) => {
+router.post('/', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
   try {
     await connection.query('BEGIN;')
