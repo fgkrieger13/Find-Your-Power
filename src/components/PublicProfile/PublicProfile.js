@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import InitiateConnection from '../InitiateConnection/InitiateConnection';
 import CountConnections from '../CountConnections/CountConnections';
+import DefaultImage from '../DefaultImage/DefaultImage';
 
 
 class PublicProfile extends Component {
@@ -28,7 +29,9 @@ class PublicProfile extends Component {
       <div className="profile-container">
         <div className="profile-header-container">
           {/* <div className="profile-photo"> */}
-          <img className="public-profile-avatar" src={this.props.profile.avatar} />
+          {this.props.profile.avatar ? 
+          <img className="public-profile-avatar" src={this.props.profile.avatar} /> :
+          <DefaultImage />}
 
           {/* </div> */}
           <div className="profile-name-email-container">
