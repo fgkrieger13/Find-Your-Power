@@ -67,6 +67,7 @@ class ForgotPassword extends Component {
 
         return (
             <div className="register-container">
+                <h1>Forgot Password.</h1>
                 <form className="profile-form" onSubmit={this.sendEmail}>
                     <input
                         id="email"
@@ -102,6 +103,15 @@ class ForgotPassword extends Component {
                         onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
                     >
                         Login
+                    </button>
+                </center>
+                <center>
+                    <button
+                        type="button"
+                        className="link-button"
+                        onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}
+                    >
+                        Register
                     </button>
                 </center>
             </div>
