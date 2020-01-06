@@ -5,9 +5,15 @@ body {
     width: 100%;
 }
 
-h4, h3, h2 {
+h4, h2 {
     color: #583045;
     font-family: 'Josefin Sans', sans-serif;
+}
+
+h3 {
+    color: #583045;
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
 }
 li {
     list-style: none;

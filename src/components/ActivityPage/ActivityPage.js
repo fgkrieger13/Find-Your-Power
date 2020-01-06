@@ -4,7 +4,6 @@ import StatusModalConnector from '../StatusModalConnector/StatusModalConnector';
 import StatusModalConnectee from '../StatusModalConnectee/StatusModalConnectee';
 import { withRouter } from 'react-router-dom';
 
-
 class ActivityPage extends Component {
 
   componentDidMount() {
@@ -21,11 +20,6 @@ class ActivityPage extends Component {
 
   denyConnection = (activity) => {
     this.props.dispatch({ type: 'DENY_CONNECTION', payload: activity })
-  }
-
-  handleNameClick = (id) => {
-    this.props.dispatch({ type: 'FETCH_PROFILE', payload: id })
-    this.props.history.push(`/profile/${id}`)
   }
 
   render() {
@@ -45,23 +39,25 @@ class ActivityPage extends Component {
                         </div>
                         {activity.connecting_id === this.props.user.id ?
                           <div className="activity-pending-title">
-                            <h3 onClick={() => this.handleNameClick(activity.connecting_to_id)}>
+                            <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_to_id}`)}>
                               {activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3>
                           </div>
                           :
-                          <h3>{activity.connecting_first_name} {activity.connecting_last_name}</h3>
+                          <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_id}`)}>
+                            {activity.connecting_first_name} {activity.connecting_last_name}</h3>
                         }
                       </div>
-                      <div className="activity-suggested-by"><h3>Suggested by:</h3></div>
+                      <div className="activity-suggested-by"><h2>Suggested by:</h2></div>
                       <div className="activity-pending-suggestor">
                         <div className="activity-pending-connecting-avatar">
                           <img className="activity-pending-avatar" src={activity.connector_avatar} />
-                          <h3>{activity.connector_first_name} {activity.connector_last_name}</h3>
+                          <h3 onClick={() => this.props.history.push(`/profile/${activity.connector_id}`)}>
+                            {activity.connector_first_name} {activity.connector_last_name}</h3>
                         </div>
                       </div>
 
                       <div className="activity-pending-message">
-                        <h3>Message:</h3>
+                        <h2>Message:</h2>
                         <p>{activity.message}</p>
                       </div>
                       <div>
@@ -82,7 +78,6 @@ class ActivityPage extends Component {
                               Deny
                             </button>
                           </div>
-
                           :
                           ''
                         }
@@ -103,17 +98,29 @@ class ActivityPage extends Component {
                     && activity.connecting_accepted && activity.connecting_to_accepted))).map((activity) =>
                       <tr key={activity.connections_id}>
                         <td> <img className="activity-pending-avatar-small" src={activity.connector_avatar} /></td>
-                        <td className="activity-connected-you-connector-container"> <h3>{activity.connector_first_name} {activity.connector_last_name}</h3></td>
+                        <td className="activity-connected-you-connector-container">
+                          <h3 onClick={() => this.props.history.push(`/profile/${activity.connector_id}`)}>
+                            {activity.connector_first_name} {activity.connector_last_name}
+                          </h3>
+                        </td>
                         <td className="activity-connected-you-with-container"><h2>connected you with</h2></td>
                         {activity.connecting_id === this.props.user.id ?
                           <>
                             <td><img className="activity-pending-avatar-small" src={activity.connecting_to_avatar} /></td>
-                            <td><h3>{activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3></td>
+                            <td>
+                              <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_to_id}`)}>
+                                {activity.connecting_to_first_name} {activity.connecting_to_last_name}
+                              </h3>
+                            </td>
                           </>
                           :
                           <>
                             <td><img className="activity-pending-avatar-small" src={activity.connecting_avatar} /></td>
-                            <td><h3>{activity.connecting_first_name} {activity.connecting_last_name}</h3></td>
+                            <td>
+                              <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_id}`)}>
+                                {activity.connecting_first_name} {activity.connecting_last_name}
+                              </h3>
+                            </td>
                           </>
                         }
                         <StatusModalConnectee activity={activity} />
@@ -132,10 +139,17 @@ class ActivityPage extends Component {
                 {(this.props.userActivity.filter(activity => activity.connector_id === this.props.user.id)).map((activity) =>
                   <tr key={activity.connections_id}>
                     <td><img className="activity-pending-avatar-small" src={activity.connecting_avatar} /></td>
-                    <td><h3>{activity.connecting_first_name} {activity.connecting_last_name}</h3></td>
+                    <td>
+                      <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_id}`)}>
+                        {activity.connecting_first_name} {activity.connecting_last_name}</h3>
+                    </td>
                     <td><h2>connected with</h2></td>
                     <td><img className="activity-pending-avatar-small" src={activity.connecting_to_avatar} /></td>
-                    <td><h3>{activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3></td>
+                    <td>
+                      <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_to_id}`)}>
+                        {activity.connecting_to_first_name} {activity.connecting_to_last_name}
+                      </h3>
+                    </td>
                     <StatusModalConnector activity={activity} />
                   </tr>
                 )}
@@ -146,9 +160,7 @@ class ActivityPage extends Component {
         </div>
         <pre>
           {JSON.stringify(this.props.userActivity, null, 2)}
-          {/* {JSON.stringify((this.props.userActivity.filter(activity => activity.connector_id === this.props.user.id)), null, 2)} */}
         </pre>
-
       </div>
     )
   }
