@@ -60,7 +60,6 @@ class MyProfile extends Component {
           </div>
           <div className="profile-connected-summary-container">
             <CountMyConnections user={this.props.user} profile={this.props.profile} />
-            <button className="profile-view-connected-button">View</button>
           </div>
         </div>
         <pre>
