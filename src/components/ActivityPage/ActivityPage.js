@@ -68,19 +68,19 @@ class ActivityPage extends Component {
                         {(activity.connecting_id === this.props.user.id && !activity.connecting_accepted) ||
                           (activity.connecting_to_id === this.props.user.id && !activity.connecting_to_accepted) ?
                           <div className="activity-pending-button-container">
-                            <button className="activity-pending-accept-button" onClick={
-                              activity.connecting_id === this.props.user.id ?
-                                () => this.changeConnectingAccepted(activity)
-                                :
-                                () => this.changeConnectingToAccepted(activity)
-                            }>
+                            <button className="activity-pending-accept-button"
+                              onClick={
+                                activity.connecting_id === this.props.user.id ?
+                                  () => this.changeConnectingAccepted(activity)
+                                  :
+                                  () => this.changeConnectingToAccepted(activity)
+                              }>
                               Accept
-                          </button>
+                            </button>
                             <button className="activity-pending-cancel-button"
                               onClick={() => this.denyConnection(activity)}>
                               Deny
-                          </button>
-
+                            </button>
                           </div>
 
                           :
@@ -116,7 +116,7 @@ class ActivityPage extends Component {
                             <td><h3>{activity.connecting_first_name} {activity.connecting_last_name}</h3></td>
                           </>
                         }
-                        <StatusModalConnectee activity={activity}/>
+                        <StatusModalConnectee activity={activity} />
                       </tr>
                     )}
               </tbody>
