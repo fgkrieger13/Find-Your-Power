@@ -9,6 +9,9 @@ h4, h3, h2 {
     color: #583045;
     font-family: 'Josefin Sans', sans-serif;
 }
+li {
+    list-style: none;
+}
 
 p {
     font-family: 'Tahoma', sans-serif;
@@ -386,3 +389,34 @@ tr, td {
     flex-direction: column;
     text-align: center;
 }
+
+.search-field {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    height: 35px;
+    width: 300px;
+    text-align: center;
+    outline: none;
+}
+
+.search-avatar {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.search-page-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+td {
+    max-width: 350px;
+}
+
+
+
+
