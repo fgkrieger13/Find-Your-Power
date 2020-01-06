@@ -6,38 +6,59 @@ import axios from 'axios';
 
 class RegisterPage extends Component {
   state = {
-    showPasswordRule: false,
-    passwordLetter: false,
-    passwordCapital: false,
-    passwordNumber: false,
-    passwordLength: false,
+    // showPasswordRule: false,
+    // passwordLetter: false,
+    // passwordCapital: false,
+    // passwordNumber: false,
+    // passwordLength: false,
     first_name: '',
     last_name: '',
     username: '',
     password: '',
   };
 
-  handleShowPasswordRule = () => {
-    this.setState({
-      ...this.state,
-      showPasswordRule: true
-    })
-  }
+  // handleShowPasswordRule = () => {
+  //   this.setState({
+  //     ...this.state,
+  //     showPasswordRule: true
+  //   })
+  // }
+
+  // checkPassword = () => {
+  //   console.log('in checkPassword', this.state.password);
+  //   let lowerCaseLetters = /[a-z]/g;
+  //   if (this.state.password.match(lowerCaseLetters)) {
+  //     console.log('in password match!');
+  //     this.setState({
+  //       ...this.state,
+  //       passwordLetter: true
+  //     })
+  //   } else {
+  //     this.setState({
+  //       ...this.state,
+  //       passwordLetter: false
+  //     })
+  //   }
+  // }
 
   registerUser = (event) => {
     event.preventDefault();
-
-    if (this.state.username && this.state.password) {
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          username: this.state.username,
-          password: this.state.password,
-
-        },
-      });
+    if (this.state.username && this.state.password && this.state.first_name && this.state.last_name) {
+      let lowerCaseLetters = /[a-z]/g;
+      let upperCaseLetters = /[A-Z]/g;
+      if (this.state.password.match(lowerCaseLetters)){
+        this.props.dispatch({
+          type: 'REGISTER',
+          payload: {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            username: this.state.username,
+            password: this.state.password,
+          },
+        });
+      } else {
+        console.log('ERROR PASSWORD DOES NOT MEET REQUIREMENTS');
+      }
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
@@ -49,10 +70,21 @@ class RegisterPage extends Component {
     });
   }
 
+  // handleInputPassword = (event) => {
+  //   this.setPassword(event)
+  //   this.checkPassword();
+  // }
+
+  // setPassword = (event) => {
+  //   this.setState({
+  //     ...this.state,
+  //     password: event.target.value,
+  //   })
+  // }
+
   render() {
     return (
       <div>
-
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
@@ -71,7 +103,6 @@ class RegisterPage extends Component {
                 value={this.state.first_name}
                 onChange={this.handleInputChangeFor('first_name')}
               />
-
             </div>
             <div>
               <input
@@ -98,7 +129,12 @@ class RegisterPage extends Component {
                 value={this.state.password}
                 onClick={this.handleShowPasswordRule}
                 onChange={this.handleInputChangeFor('password')}
+                // onChange={(e) =>{ 
+                //   this.setPassword(e)
+                //   this.checkPassword()
+                // }}
               />
+              <p>password must contain at least one <b>capital letter</b>, one <b>lowercase letter</b>, one <b>number</b>, and be at least 7 charectors long</p>
             </div>
             <div>
               <input
@@ -112,7 +148,7 @@ class RegisterPage extends Component {
           {this.state.showPasswordRule ?
             <div id="message">
               <h3>Password must contain the following:</h3>
-              <p id="letter" 
+              <p id="letter"
                 className={this.state.passwordLetter ? "valid-password" : "invalid-password"}
               >
                 A <b>lowercase</b> letter
@@ -132,9 +168,8 @@ class RegisterPage extends Component {
           >
             Login
           </button>
-
         </center>
-
+        <pre>{JSON.stringify(this.state, null, 2)}</pre>
       </div>
     );
   }
