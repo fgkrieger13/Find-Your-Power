@@ -11,6 +11,7 @@ class SearchItem extends Component {
               <td><img className="search-avatar" src={result.avatar} /></td>
               <td><h3>{result.first_name} {result.last_name}</h3></td>
               <td><p>{result.services}</p></td>
+              <td><p>{result.skills}</p></td>
             </tr>
           )}
         </tbody>
