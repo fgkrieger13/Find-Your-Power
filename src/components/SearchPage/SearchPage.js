@@ -10,6 +10,7 @@ class SearchPage extends Component {
 
   render() {
     return (
+      <div className="search-page-background">
       <div className="search-page-container">
         <div>
           <h2>Search for a name or service</h2>
@@ -19,6 +20,7 @@ class SearchPage extends Component {
           <SearchItem results={this.props.results} />
           </div>
         {/* <pre>{JSON.stringify(this.props.results, null, 2)}</pre> */}
+      </div>
       </div>
     )
   }
