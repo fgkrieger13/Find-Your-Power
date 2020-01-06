@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -35,6 +36,8 @@ const ProtectedRoute = (props) => {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
     ComponentToShow = LoginPage;
+  } else if (loginMode === 'forgot-password') {
+    ComponentToShow = ForgotPassword;
   } else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
