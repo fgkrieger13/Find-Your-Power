@@ -6,47 +6,21 @@ import axios from 'axios';
 
 class RegisterPage extends Component {
   state = {
-    // showPasswordRule: false,
-    // passwordLetter: false,
-    // passwordCapital: false,
-    // passwordNumber: false,
-    // passwordLength: false,
     first_name: '',
     last_name: '',
     username: '',
     password: '',
   };
 
-  // handleShowPasswordRule = () => {
-  //   this.setState({
-  //     ...this.state,
-  //     showPasswordRule: true
-  //   })
-  // }
-
-  // checkPassword = () => {
-  //   console.log('in checkPassword', this.state.password);
-  //   let lowerCaseLetters = /[a-z]/g;
-  //   if (this.state.password.match(lowerCaseLetters)) {
-  //     console.log('in password match!');
-  //     this.setState({
-  //       ...this.state,
-  //       passwordLetter: true
-  //     })
-  //   } else {
-  //     this.setState({
-  //       ...this.state,
-  //       passwordLetter: false
-  //     })
-  //   }
-  // }
-
   registerUser = (event) => {
     event.preventDefault();
+    // checks if all info has been entered
     if (this.state.username && this.state.password && this.state.first_name && this.state.last_name) {
       let lowerCaseLetters = /[a-z]/g;
       let upperCaseLetters = /[A-Z]/g;
-      if (this.state.password.match(lowerCaseLetters)){
+      var numbers = /[0-9]/g;
+      // checks if password meets requirements
+      if (this.state.password.match(lowerCaseLetters) && this.state.password.match(upperCaseLetters) && this.state.password.match(numbers) && this.state.password.length>=7 ){
         this.props.dispatch({
           type: 'REGISTER',
           payload: {
@@ -57,7 +31,7 @@ class RegisterPage extends Component {
           },
         });
       } else {
-        console.log('ERROR PASSWORD DOES NOT MEET REQUIREMENTS');
+        this.props.dispatch({ type: 'REGISTRATION_PASSWORD_ERROR' });
       }
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
@@ -69,18 +43,6 @@ class RegisterPage extends Component {
       [propertyName]: event.target.value,
     });
   }
-
-  // handleInputPassword = (event) => {
-  //   this.setPassword(event)
-  //   this.checkPassword();
-  // }
-
-  // setPassword = (event) => {
-  //   this.setState({
-  //     ...this.state,
-  //     password: event.target.value,
-  //   })
-  // }
 
   render() {
     return (
@@ -129,10 +91,6 @@ class RegisterPage extends Component {
                 value={this.state.password}
                 onClick={this.handleShowPasswordRule}
                 onChange={this.handleInputChangeFor('password')}
-                // onChange={(e) =>{ 
-                //   this.setPassword(e)
-                //   this.checkPassword()
-                // }}
               />
               <p>password must contain at least one <b>capital letter</b>, one <b>lowercase letter</b>, one <b>number</b>, and be at least 7 charectors long</p>
             </div>
