@@ -6,11 +6,23 @@ import axios from 'axios';
 
 class RegisterPage extends Component {
   state = {
+    showPasswordRule: false,
+    passwordLetter: false,
+    passwordCapital: false,
+    passwordNumber: false,
+    passwordLength: false,
     first_name: '',
     last_name: '',
     username: '',
     password: '',
   };
+
+  handleShowPasswordRule = () => {
+    this.setState({
+      ...this.state,
+      showPasswordRule: true
+    })
+  }
 
   registerUser = (event) => {
     event.preventDefault();
@@ -84,6 +96,7 @@ class RegisterPage extends Component {
                 placeholder="PASSWORD"
                 type="password"
                 value={this.state.password}
+                onClick={this.handleShowPasswordRule}
                 onChange={this.handleInputChangeFor('password')}
               />
             </div>
@@ -96,8 +109,20 @@ class RegisterPage extends Component {
               />
             </div>
           </form>
-
-
+          {this.state.showPasswordRule ?
+            <div id="message">
+              <h3>Password must contain the following:</h3>
+              <p id="letter" 
+                className={this.state.passwordLetter ? "valid-password" : "invalid-password"}
+              >
+                A <b>lowercase</b> letter
+              </p>
+              <p id="capital" className="invalid-password">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" className="invalid-password">A <b>number</b></p>
+              <p id="length" className="invalid-password">Minimum <b>8 characters</b></p>
+            </div>
+            : ''
+          }
         </div>
         <center>
           <button
