@@ -27,9 +27,10 @@ class PublicProfile extends Component {
     
       <div className="profile-container">
         <div className="profile-header-container">
-          <div className="profile-photo">
+          {/* <div className="profile-photo"> */}
+          <img className="public-profile-avatar" src={this.props.profile.avatar} />
 
-          </div>
+          {/* </div> */}
           <div className="profile-name-email-container">
             <div className="profile-name">
               <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>

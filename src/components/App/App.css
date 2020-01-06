@@ -99,7 +99,14 @@ h1 {
     margin-left: 20px;
     cursor: pointer;
 }
-
+.public-profile-avatar {
+    margin-left: 20px;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #f29475;
+}
 .inner-drop {
     display: flex;
     flex-direction: column;

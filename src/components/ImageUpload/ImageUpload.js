@@ -18,6 +18,7 @@ class ImageUpload extends Component {
         // console.log('File uploaded with filename', info.filename)
         console.log('Access it on s3 at', info.fileUrl)
         this.props.dispatch({ type: 'POST_IMAGE_URL', payload: info.fileUrl })
+        this.props.dispatch({type: 'FETCH_USER'})
     }
 
     render() {

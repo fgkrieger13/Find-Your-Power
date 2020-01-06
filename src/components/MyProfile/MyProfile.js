@@ -10,9 +10,14 @@ class MyProfile extends Component {
     return (
       <div className="profile-container">
         <div className="profile-header-container">
-          <div className="profile-photo">
-          <ImageUpload/>
-          </div>
+        {this.props.user.avatar ? <img className="public-profile-avatar" src={this.props.user.avatar} />
+        :
+        <div className="profile-photo">
+        <ImageUpload/>
+        </div>}
+        {/* <img className="public-profile-avatar" src={this.props.user.avatar} />
+          <ImageUpload/> */}
+          
           <div className="profile-name-email-container">
             <div className="profile-name">
               <h2>{this.props.user.first_name} {this.props.user.last_name}</h2>
