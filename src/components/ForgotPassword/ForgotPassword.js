@@ -24,14 +24,15 @@ class ForgotPassword extends Component {
     sendEmail = async (e) => {
         console.log('in sendEmail');
         // e.preventDefault();
-        // const { email } = this.state;
-        // if (email === '') {
-        //     this.setState({
-        //         showError: false,
-        //         messageFromServer: '',
-        //         showNullError: true,
-        //     });
-        // } else {
+        const { email } = this.state;
+        if (email === '') {
+            this.setState({
+                showError: false,
+                messageFromServer: '',
+                showNullError: true,
+            });
+        }
+        //  else {
         //     try {
         //         const response = await axios.post(
         //             'http://localhost:3003/forgotPassword',
