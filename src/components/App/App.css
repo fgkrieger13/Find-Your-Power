@@ -405,3 +405,18 @@ tr, td {
     object-fit: cover;
     border-radius: 50%;
 }
+
+.search-page-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+td {
+    max-width: 350px;
+}
+
+
+
+

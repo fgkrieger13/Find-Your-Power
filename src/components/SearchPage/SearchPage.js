@@ -10,11 +10,15 @@ class SearchPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="search-page-container">
+        <div>
           <h2>Search for a name or service</h2>
           <input className="search-field" onChange={this.liveSearch} />
+        </div>
+        <div>
           <SearchItem results={this.props.results} />
-          <pre>{JSON.stringify(this.props.results, null, 2)}</pre>
+          </div>
+        {/* <pre>{JSON.stringify(this.props.results, null, 2)}</pre> */}
       </div>
     )
   }
