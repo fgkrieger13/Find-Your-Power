@@ -38,11 +38,12 @@ app.use('/api/publicprofile', publicProfileRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/imageurl', imageUrlRouter);
 
+// Required information for Amazon S3 image bucket // 
 app.use('/s3', UploaderS3Router({
-  bucket: 'findyourpowerscytalebucket',           // required
+  bucket: 'findyourpowerscytalebucket',           // required, this is the name of the bucket where our images are stored
   region: 'us-east-2',                            // optional
   headers: {'Access-Control-Allow-Origin': '*'},  // optional
-  ACL: 'public-read',                                 // this is the default - set to `public-read` to let anyone view uploads
+  ACL: 'public-read',                             // this is the default - set to `public-read` to let anyone view uploads
 }));
 
 // Serve static files

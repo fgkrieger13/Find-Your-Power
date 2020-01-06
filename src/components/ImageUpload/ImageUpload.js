@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader';
 
 
-
+// Basic styling for image dropzone
 const dropStyle = {
     border: '1px solid #f29475',
     borderRadius: '100px',
@@ -26,6 +26,8 @@ class ImageUpload extends Component {
             server: 'http://localhost:5000',
             // signingUrlQueryParams: { uploadType: 'avatar' },
         }
+
+        // URL for bucket where users profile pictures are stored
         const s3Url = 'https://findyourpowerscytalebucket.s3.amazonaws.com'
 
         const innerDropElement = (
@@ -35,6 +37,7 @@ class ImageUpload extends Component {
         )
 
         return (
+            // This creates the space where image can be uploaded 
             <DropzoneS3Uploader
                 children={innerDropElement}
                 onFinish={this.handleFinishedUpload}
