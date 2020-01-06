@@ -81,6 +81,13 @@ class LoginPage extends Component {
           >
             Register
           </button>
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => {this.props.dispatch({type: 'SET_TO_FORGOT_PASSWORD'})}}
+          >
+            Forgot Password
+          </button>
         </center>
       </div>
     );
