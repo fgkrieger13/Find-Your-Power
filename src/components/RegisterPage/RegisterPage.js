@@ -14,18 +14,25 @@ class RegisterPage extends Component {
 
   registerUser = (event) => {
     event.preventDefault();
-
-    if (this.state.username && this.state.password) {
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          username: this.state.username,
-          password: this.state.password,
-
-        },
-      });
+    // checks if all info has been entered
+    if (this.state.username && this.state.password && this.state.first_name && this.state.last_name) {
+      let lowerCaseLetters = /[a-z]/g;
+      let upperCaseLetters = /[A-Z]/g;
+      var numbers = /[0-9]/g;
+      // checks if password meets requirements
+      if (this.state.password.match(lowerCaseLetters) && this.state.password.match(upperCaseLetters) && this.state.password.match(numbers) && this.state.password.length>=7 ){
+        this.props.dispatch({
+          type: 'REGISTER',
+          payload: {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            username: this.state.username,
+            password: this.state.password,
+          },
+        });
+      } else {
+        this.props.dispatch({ type: 'REGISTRATION_PASSWORD_ERROR' });
+      }
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
@@ -40,7 +47,6 @@ class RegisterPage extends Component {
   render() {
     return (
       <div>
-
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
@@ -59,7 +65,6 @@ class RegisterPage extends Component {
                 value={this.state.first_name}
                 onChange={this.handleInputChangeFor('first_name')}
               />
-
             </div>
             <div>
               <input
@@ -84,8 +89,10 @@ class RegisterPage extends Component {
                 placeholder="PASSWORD"
                 type="password"
                 value={this.state.password}
+                onClick={this.handleShowPasswordRule}
                 onChange={this.handleInputChangeFor('password')}
               />
+              <p>password must contain at least one <b>capital letter</b>, one <b>lowercase letter</b>, one <b>number</b>, and be at least 7 charectors long</p>
             </div>
             <div>
               <input
@@ -96,8 +103,20 @@ class RegisterPage extends Component {
               />
             </div>
           </form>
-
-
+          {this.state.showPasswordRule ?
+            <div id="message">
+              <h3>Password must contain the following:</h3>
+              <p id="letter"
+                className={this.state.passwordLetter ? "valid-password" : "invalid-password"}
+              >
+                A <b>lowercase</b> letter
+              </p>
+              <p id="capital" className="invalid-password">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" className="invalid-password">A <b>number</b></p>
+              <p id="length" className="invalid-password">Minimum <b>8 characters</b></p>
+            </div>
+            : ''
+          }
         </div>
         <center>
           <button
@@ -107,9 +126,8 @@ class RegisterPage extends Component {
           >
             Login
           </button>
-
         </center>
-
+        <pre>{JSON.stringify(this.state, null, 2)}</pre>
       </div>
     );
   }
