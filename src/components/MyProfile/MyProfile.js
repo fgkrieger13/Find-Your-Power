@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import EditProfileModal from '../EditProfileModal/EditProfileModal';
 import ImageUpload from '../ImageUpload/ImageUpload';
+import CountMyConnections from '../CountMyConnections/CountMyConnections';
 
 class MyProfile extends Component {
 
@@ -58,18 +59,13 @@ class MyProfile extends Component {
             </div>
           </div>
           <div className="profile-connected-summary-container">
-            <h1>Connected 2,000 people</h1>
+            <CountMyConnections user={this.props.user} profile={this.props.profile} />
             <button className="profile-view-connected-button">View</button>
           </div>
         </div>
         <pre>
           {JSON.stringify(this.state, null, 2)}
         </pre>
-
-
-
-
-
 
       </div>
 
@@ -79,6 +75,7 @@ class MyProfile extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
+  profile: state.userActivityReducer[0],
 });
 
 export default connect(mapStateToProps)(MyProfile);
