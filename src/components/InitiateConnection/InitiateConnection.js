@@ -5,6 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import SearchInitiateConnection from '../SearchInitiateConnection/SearchInitiateConnection';
 
 class initiateConnectionModal extends Component {
 
@@ -14,6 +15,10 @@ class initiateConnectionModal extends Component {
       connecting_to_id: '',
       message: ''
     },
+  }
+
+  liveSearch = (event) => {
+    this.props.dispatch({ type: 'SEARCH_TERM', payload: { string: event.target.value } })
   }
 
   searchUsers = (event) => {
@@ -67,15 +72,18 @@ class initiateConnectionModal extends Component {
             <DialogTitle id="form-dialog-title"><h2>Select the person you would like to connect {this.props.profile.first_name} with</h2></DialogTitle>
             <DialogContent>
               <TextField
-                onChange={this.searchUsers}
+                onChange={this.liveSearch}
                 color="primary"
                 margin="normal"
                 label="Search"
                 multiline={true}
                 variant="outlined"
-                value={this.state.connection.connecting_to_id}
+                // value={this.state.connection.connecting_to_id}
                 fullWidth
               />
+              <div>
+          <SearchInitiateConnection results={this.props.results} />
+          </div>
               <TextField
                 onChange={this.addMessage}
                 color="primary"
@@ -108,6 +116,7 @@ class initiateConnectionModal extends Component {
 const mapStateToProps = state => ({
   user: state.user,
   profile: state.publicProfileReducer[0],
+  results: state.liveSearchReducer,
 });
 
 export default connect(mapStateToProps)(initiateConnectionModal);
