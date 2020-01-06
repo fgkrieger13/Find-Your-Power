@@ -10,7 +10,7 @@ class PublicProfile extends Component {
 
   componentDidMount() {
     let id = this.props.match.params.id;
-    this.props.dispatch({type: 'FETCH_PROFILE', payload: {profileId: id}})
+    this.props.dispatch({ type: 'FETCH_PROFILE', payload: { profileId: id } })
   }
 
   viewConnections = () => {
@@ -23,62 +23,56 @@ class PublicProfile extends Component {
 
   render() {
     return (
-    <>
-    {this.props.profile ? 
-    
-      <div className="profile-container">
-        <div className="profile-header-container">
-          {/* <div className="profile-photo"> */}
-          {this.props.profile.avatar ? 
-          <img className="public-profile-avatar" src={this.props.profile.avatar} /> :
-          <DefaultImage />}
+      <>
+        {this.props.profile ?
 
-          {/* </div> */}
-          <div className="profile-name-email-container">
-            <div className="profile-name">
-              <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
+          <div className="profile-container">
+            <div className="profile-header-container">
+
+              {this.props.profile.avatar ?
+                <img className="public-profile-avatar" src={this.props.profile.avatar} /> :
+                <DefaultImage />}
+              <div className="profile-name-email-container">
+                <div className="profile-name">
+                  <h2>{this.props.profile.first_name} {this.props.profile.last_name}</h2>
+                </div>
+                <div className="profile-email">
+                  <h3>{this.props.profile.username}</h3>
+                </div>
+              </div>
             </div>
-            <div className="profile-email">
-              <h3>{this.props.profile.username}</h3>
+            <div className="profile-bio-container">
+              <h3>Bio:</h3>
+              <p className="profile-bio">{this.props.profile.bio}</p>
+            </div>
+            <div className="profile-button-placement">
+              <InitiateConnection connectingId={this.props.profile.id} />
+            </div>
+            <div className="profile-info-container">
+              <div className="profile-info-header">
+                <h2>My Info</h2>
+              </div>
+              <div className="profile-info-copy">
+                <div className="profile-info-copy-sections">
+                  <h3 className="profile-info-current-roles">Current Roles:</h3>
+                  <p>{this.props.profile.roles}</p>
+                </div>
+                <div className="profile-info-copy-sections">
+                  <h3>Services:</h3>
+                  <p>{this.props.profile.services}</p>
+                </div>
+                <div className="profile-info-copy-sections">
+                  <h3>Skills:</h3>
+                  <p>{this.props.profile.skills}</p>
+                </div>
+              </div>
+              <CountConnections profile={this.props.profile} />
             </div>
           </div>
-        </div>
-        <div className="profile-bio-container">
-          <h3>Bio:</h3>
-          <p className="profile-bio">{this.props.profile.bio}</p>
-        </div>
-        <div className="profile-button-placement">
-            <InitiateConnection connectingId={this.props.profile.id}/>
-            {/* <button onClick={() => this.initiateConnection(this.props.profile.id)}
-                className="profile-view-connected-button">
-                Help Connect
-            </button> */}
-        </div>
-        <div className="profile-info-container">
-          <div className="profile-info-header">
-            <h2>My Info</h2>
-          </div>
-          <div className="profile-info-copy">
-            <div className="profile-info-copy-sections">
-              <h3 className="profile-info-current-roles">Current Roles:</h3>
-              <p>{this.props.profile.roles}</p>
-            </div>
-            <div className="profile-info-copy-sections">
-              <h3>Services:</h3>
-              <p>{this.props.profile.services}</p>
-            </div>
-            <div className="profile-info-copy-sections">
-              <h3>Skills:</h3>
-              <p>{this.props.profile.skills}</p>
-            </div>
-          </div>
-            <CountConnections profile={this.props.profile} />
-        </div>
-      </div>
-      : ''
-      }
-      <pre>{JSON.stringify(this.props.profile, null, 2)}</pre>
-    </>
+          : ''
+        }
+        <pre>{JSON.stringify(this.props.profile, null, 2)}</pre>
+      </>
     )
   }
 }
