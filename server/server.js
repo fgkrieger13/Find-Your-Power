@@ -15,6 +15,7 @@ const myprofileRouter = require('./routes/myprofile.router');
 const publicProfileRouter = require('./routes/publicprofile.router');
 const searchRouter = require('./routes/search.router');
 const imageUrlRouter = require('./routes/image-url.router');
+const forgotPasswordRouter = require('./routes/forgot-password.router');
 
 // S3 uploader
 const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
@@ -37,6 +38,7 @@ app.use('/api/myprofile', myprofileRouter);
 app.use('/api/publicprofile', publicProfileRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/imageurl', imageUrlRouter);
+app.use('/api/forgotpassword', forgotPasswordRouter);
 
 // Required information for Amazon S3 image bucket // 
 app.use('/s3', UploaderS3Router({
