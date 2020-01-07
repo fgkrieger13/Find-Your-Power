@@ -33,14 +33,17 @@ class CountConnections extends Component {
     return (
       <>
         <div className="profile-connected-summary-container">
+          {/* checks if publicActivity array has returned from server */}
           {(this.props.publicActivity.length > 0) ?
             <h1>Connections Made: {(this.props.publicActivity.filter(activity => activity.connector_id === this.props.profile.id)).length} </h1>
             : <h1>0 Connections Made</h1>
           }
+          {/* opens public view of connections Modal */}
           <button onClick={this.handleClickOpen}
             className="profile-view-connected-button">
             View
           </button>
+          {/* Modal */}
           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
             <div className="profile-connected-count-container">
               <DialogTitle id="form-dialog-count-title"><div className="underline"><h2>{this.props.profile.first_name} Connected</h2></div></DialogTitle>
