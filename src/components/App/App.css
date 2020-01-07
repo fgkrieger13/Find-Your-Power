@@ -427,6 +427,13 @@ tr, td {
     border-radius: 50%;
 }
 
+.search-avatar2 {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .search-page-container {
     display: flex;
     flex-direction: column;
