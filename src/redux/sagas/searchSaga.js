@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-
+// Initiates the GET of search results
 function* fetchSearch(action) {
   try {
     console.log('in fetchSearch', action.payload);

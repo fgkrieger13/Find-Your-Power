@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// Initiate POST of profile picture
 function* postImageUrl(action) {
     try {
         const config = {

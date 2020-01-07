@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+// Show name and avatar of search result
+// On click of username user will be directed to that person's profile
 class SearchInitiateConnection extends Component {
   render() {
     return (

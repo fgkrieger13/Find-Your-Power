@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchItem from '../SearchItem/SearchItem';
 
+// Search page where users can search for other users
 class SearchPage extends Component {
 
+  // initiates search in database based on search term that user inputs
   liveSearch = (event) => {
     this.props.dispatch({ type: 'SEARCH_TERM', payload: { string: event.target.value } })
   }

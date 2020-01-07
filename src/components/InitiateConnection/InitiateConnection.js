@@ -17,10 +17,12 @@ class initiateConnectionModal extends Component {
     },
   }
 
+  // searches through database for users
   liveSearch = (event) => {
     this.props.dispatch({ type: 'SEARCH_TERM', payload: { string: event.target.value } })
   }
 
+  // handles which user id is entered for search
   searchUsers = (event) => {
     console.log('searching users');
     this.setState({
@@ -32,6 +34,7 @@ class initiateConnectionModal extends Component {
     })
   }
 
+  // handles input for connection message
   addMessage = (event) => {
     this.setState({
       ...this.state,
@@ -42,11 +45,13 @@ class initiateConnectionModal extends Component {
     })
   }
 
+  // initiate new connection request
   handleSendConnectionRequest = (connectingId) => {
     this.props.dispatch({ type: 'SEND_CONNECTION-REQUEST', payload: { connecting_id: connectingId, connecting_to_id: this.state.connection.connecting_to_id, connector_id: this.props.user.id, message: this.state.connection.message } });
     this.handleClose();
   }
 
+  // opens modal when button is clicked
   handleClickOpen = () => {
     this.setState({
       ...this.state,
@@ -54,6 +59,7 @@ class initiateConnectionModal extends Component {
     })
   };
 
+  // handles modal close
   handleClose = () => {
     this.setState({
       ...this.state,
@@ -67,7 +73,8 @@ class initiateConnectionModal extends Component {
         <div >
           <button className="profile-view-connected-button" onClick={this.handleClickOpen}>
             Connect
-                    </button>
+          </button>
+          {/* Search to select which user to connect with */}
           <Dialog className="initiate-connection-container" open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title"><h2>Select the person you would like to connect {this.props.profile.first_name} with</h2></DialogTitle>
             <DialogContent>

@@ -11,6 +11,7 @@ class MyProfile extends Component {
     return (
       <div className="profile-container">
         <div className="profile-header-container">
+        {/* Display user avatar or show the option to upload an image */}
         {this.props.user.avatar ? <img className="public-profile-avatar" src={this.props.user.avatar} />
         :
         <div className="profile-photo">

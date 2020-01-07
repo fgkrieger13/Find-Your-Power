@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-
+// Fetches public user's profile information
 function* fetchProfile(action) {
   try {
     const response = yield axios.get(`/api/publicprofile/${action.payload.profileId}`);    
@@ -11,6 +11,7 @@ function* fetchProfile(action) {
   }
 }
 
+// Fetches public user's connections activity
 function* fetchPublicActivity(action) {
   try {
     const response = yield axios.get(`/api/publicprofile/connections/${action.payload.profile_id}`);    
