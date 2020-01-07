@@ -15,6 +15,7 @@ h3 {
     font-family: 'Josefin Sans', sans-serif;
     cursor: pointer;
 }
+
 li {
     list-style: none;
 }
@@ -25,7 +26,7 @@ p {
 }
 
 .alert {
-    background-color: #ff4545;
+    text-align: center;
     margin: 50px;
 }
 
@@ -33,37 +34,32 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: #ffffff; */
-    /* width: 40%; */
-    /* height: 325px; */
-    /* margin: 20px auto; */
-    /* padding: 25px; */
-    /* border-radius: 4px; */
 }
 
 .register-container {
     background-color: #ffffff;
     box-shadow: 2px 2px 10px #88888888;
     width: 40%;
-    height: 325px;
+    height: 525px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 4px;
+    text-align: center;
 }
 
-.login-buttons-container {
+.login-buttons-container, .register-buttons-container {
     margin-top: 15px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-content:  center;
+    align-content: center;
 }
 
 .login-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-content:  center;
+    align-content: center;
     background-color: #ffffff;
     box-shadow: 2px 2px 10px #88888888;
     width: 40%;
@@ -71,7 +67,6 @@ form {
     margin: 20px auto;
     padding: 25px;
     border-radius: 4px;
-   
 }
 
 .invalid-password {
@@ -139,6 +134,7 @@ h1 {
     margin-left: 20px;
     cursor: pointer;
 }
+
 .public-profile-avatar {
     margin-left: 20px;
     width: 130px;
@@ -147,6 +143,7 @@ h1 {
     border-radius: 50%;
     border: 1px solid #f29475;
 }
+
 .inner-drop {
     display: flex;
     flex-direction: column;
@@ -270,14 +267,15 @@ h1 {
     padding: 15px;
     text-align: center;
 }
+
 .underline {
-  border-bottom: solid #f29475 1px;
-  /* text-align: center; */
+    border-bottom: solid #f29475 1px;
+    /* text-align: center; */
 }
 
 .profile-connected-count-container {
-  max-width: 600px;
-  text-align: center;
+    max-width: 600px;
+    text-align: center;
 }
 
 .profile-button-placement {
@@ -487,10 +485,4 @@ td {
 
 .initiate-connection-container {
     text-align: center;
-
 }
-
-
-
-
-

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import logo from '../../images/light-on-dark.png';
-import axios from 'axios';
-
 
 class RegisterPage extends Component {
   state = {
@@ -20,7 +17,7 @@ class RegisterPage extends Component {
       let upperCaseLetters = /[A-Z]/g;
       var numbers = /[0-9]/g;
       // checks if password meets requirements
-      if (this.state.password.match(lowerCaseLetters) && this.state.password.match(upperCaseLetters) && this.state.password.match(numbers) && this.state.password.length>=7 ){
+      if (this.state.password.match(lowerCaseLetters) && this.state.password.match(upperCaseLetters) && this.state.password.match(numbers) && this.state.password.length >= 7) {
         this.props.dispatch({
           type: 'REGISTER',
           payload: {
@@ -48,59 +45,53 @@ class RegisterPage extends Component {
     return (
       <div>
         {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
+          <h2 className="alert" role="alert"> {this.props.errors.registrationMessage}</h2>
         )}
         <div className="register-container">
           <form onSubmit={this.registerUser}>
             <h1>Register User.</h1>
-            <div>
-              <input
-                placeholder="FIRST NAME"
-                type="text"
-                value={this.state.first_name}
-                onChange={this.handleInputChangeFor('first_name')}
-              />
-            </div>
-            <div>
-              <input
-                placeholder="LAST NAME"
-                type="text"
-                value={this.state.last_name}
-                onChange={this.handleInputChangeFor('last_name')}
-              />
-
-            </div>
-            <div>
-              <input
-                placeholder="EMAIL"
-                type="text"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-
-            </div>
-            <div>
-              <input
-                placeholder="PASSWORD"
-                type="password"
-                value={this.state.password}
-                onClick={this.handleShowPasswordRule}
-                onChange={this.handleInputChangeFor('password')}
-              />
-              <p>password must contain at least one <b>capital letter</b>, one <b>lowercase letter</b>, one <b>number</b>, and be at least 7 charectors long</p>
-            </div>
-            <div>
+            <input
+              placeholder="FIRST NAME"
+              type="text"
+              value={this.state.first_name}
+              onChange={this.handleInputChangeFor('first_name')}
+            />
+            <input
+              placeholder="LAST NAME"
+              type="text"
+              value={this.state.last_name}
+              onChange={this.handleInputChangeFor('last_name')}
+            />
+            <input
+              placeholder="EMAIL"
+              type="text"
+              value={this.state.username}
+              onChange={this.handleInputChangeFor('username')}
+            />
+            <input
+              placeholder="PASSWORD"
+              type="password"
+              value={this.state.password}
+              onClick={this.handleShowPasswordRule}
+              onChange={this.handleInputChangeFor('password')}
+            />
+            <div className="register-buttons-container">
               <input
                 className="register"
                 type="submit"
                 name="submit"
                 value="Register"
+                onClick={this.registerUser}
               />
+              <input
+                className="log-in"
+                type="button"
+                value="Login"
+                onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
+              />
+            </div>
+            <div>
+              <p>Password must contain a <b>capital</b> and <b>lowercase letter</b>, <b>one number</b>, and be at least <b>7 characters long.</b></p>
             </div>
           </form>
           {this.state.showPasswordRule ?
@@ -118,27 +109,13 @@ class RegisterPage extends Component {
             : ''
           }
         </div>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
-          >
-            Login
-          </button>
-        </center>
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
       </div>
     );
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
   errors: state.errors,
 });
 
 export default connect(mapStateToProps)(RegisterPage);
-
