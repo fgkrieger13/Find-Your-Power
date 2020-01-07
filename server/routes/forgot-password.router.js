@@ -3,30 +3,29 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-// require('dotenv').config();
 
 
-// import crypto from 'crypto';
-// import User from '../sequelize';
-
-
-
+// Send email for password reset
 router.post('/', (req, res) => {
     console.log(process.env.EMAIL_ADDRESS);
     console.log('hitting /forgot-password route with', req.body.email);
+    // checks if email is not blank
     if (req.body.email === '') {
         res.status(400).send('email required');
     }
+    // finds user by email ("username")
     const queryText = `SELECT "username", "id" FROM "user" WHERE "username" = $1;`;
     pool.query(queryText, [req.body.email])
         .then((results) => {
             console.log('found user in db', results.rows);
             let token = crypto.createHash('sha1').update('abc').digest('hex');
+            // updates token with expiration date in user table
             const queryText2 = `UPDATE "user"
                     SET "token" = $2, "token_exp" = '2020-12-31'
                     WHERE "id" = $1;`;
             pool.query(queryText2, [results.rows[0].id, token])
                 .then(() => {
+                    // logs into gmail account (located in .env)
                     const transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
@@ -34,6 +33,7 @@ router.post('/', (req, res) => {
                             pass: `${process.env.EMAIL_PASSWORD}`,
                         },
                     });
+                    // email to send to users with unique URL for password reset
                     const mailOptions = {
                         from: 'no-reply@findyourpower.org',
                         to: `${req.body.email}`,
@@ -45,6 +45,7 @@ router.post('/', (req, res) => {
                             + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
                     };
                     console.log('sending mail');
+                    // sends email
                     transporter.sendMail(mailOptions, (err, response) => {
                         if (err) {
                             console.error('there was an error in transporter.sendMail: ', err);
