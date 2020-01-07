@@ -11,7 +11,9 @@ CREATE TABLE "user" (
     "skills" TEXT,
     "services" TEXT,
     "roles" TEXT,
-    "avatar" VARCHAR (1000)
+    "avatar" VARCHAR (1000),
+    "token" VARCHAR (1000),
+    "token_exp" TIMESTAMP
 );
 
 -- Creates table of the connector and connectees involved in each connection
