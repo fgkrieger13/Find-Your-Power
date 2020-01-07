@@ -69,6 +69,7 @@ class LoginPage extends Component {
             type="submit"
             name="submit"
             value="Log In"
+            onClick={this.login}
           />
           <input
             type="button"
