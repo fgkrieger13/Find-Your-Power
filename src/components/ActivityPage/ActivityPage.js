@@ -10,14 +10,17 @@ class ActivityPage extends Component {
     this.props.dispatch({ type: 'FETCH_USER_ACTIVITY' })
   }
 
+  // changes connecting_accepted to true if user is connecting
   changeConnectingAccepted = (activity) => {
     this.props.dispatch({ type: 'CHANGE_CONNECTING_ACCEPTED', payload: activity });
   }
 
+  // changes connecting_to_accepted to true if user is connecting_to
   changeConnectingToAccepted = (activity) => {
     this.props.dispatch({ type: 'CHANGE_CONNECTING_TO_ACCEPTED', payload: activity });
   }
 
+  // changes active to false if either connectee denies connection
   denyConnection = (activity) => {
     this.props.dispatch({ type: 'DENY_CONNECTION', payload: activity })
   }
@@ -27,24 +30,36 @@ class ActivityPage extends Component {
       <div className="activity-container">
         <div className="activity-pending-connections-container">
           <div className="activity-title"><h1>Pending Connections</h1></div>
+          {/* checks if userActivity array has been returned from server */}
           {(this.props.userActivity.length > 0) ?
             (this.props.userActivity.filter(activity =>
+              // checks if user is either connecting or connecting_to & if connection is pending by at least one person
               ((activity.connecting_id === this.props.user.id || activity.connecting_to_id === this.props.user.id)
                 && (!activity.connecting_accepted || !activity.connecting_to_accepted)))).map((activity) =>
                   <div key={activity.connections_id}>
                     <div className="activity-pending-single-row">
                       <div className="activity-pending-leftmost">
                         <div className="avatar">
-                          <img className="activity-pending-avatar" src={activity.connecting_to_avatar} />
+                          {/* checks if user is connecting or connecting_to, conditionally renders other person avatar*/}
+                          {activity.connecting_id === this.props.user.id ?
+                            <img className="activity-pending-avatar" onClick={() => this.props.history.push(`/profile/${activity.connecting_to_id}`)}
+                              src={activity.connecting_to_avatar} />
+                            :
+                            <img className="activity-pending-avatar" onClick={() => this.props.history.push(`/profile/${activity.connecting_id}`)}
+                              src={activity.connecting_avatar} />
+                          }
                         </div>
+                        {/* checks if user is connecting or connecting_to, conditionally renders other person name*/}
                         {activity.connecting_id === this.props.user.id ?
                           <div className="activity-pending-title">
                             <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_to_id}`)}>
                               {activity.connecting_to_first_name} {activity.connecting_to_last_name}</h3>
                           </div>
                           :
-                          <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_id}`)}>
-                            {activity.connecting_first_name} {activity.connecting_last_name}</h3>
+                          <div className="activity-pending-title">
+                            <h3 onClick={() => this.props.history.push(`/profile/${activity.connecting_id}`)}>
+                              {activity.connecting_first_name} {activity.connecting_last_name}</h3>
+                          </div>
                         }
                       </div>
                       <div className="activity-suggested-by"><h2>Suggested by:</h2></div>
@@ -61,6 +76,7 @@ class ActivityPage extends Component {
                         <p>{activity.message}</p>
                       </div>
                       <div>
+                        {/* conditionally renders buttons to approve or deny if users response is pending */}
                         {(activity.connecting_id === this.props.user.id && !activity.connecting_accepted) ||
                           (activity.connecting_to_id === this.props.user.id && !activity.connecting_to_accepted) ?
                           <div className="activity-pending-button-container">
@@ -90,10 +106,12 @@ class ActivityPage extends Component {
         </div>
         <div className="activity-connected-you-container">
           <div className="activity-title"><h1>People Who Connected You</h1></div>
+          {/* checks if userActivity array has been returned from server */}
           {(this.props.userActivity.length > 0) ?
             <table>
               <tbody>
                 {(this.props.userActivity.filter(activity =>
+                  // checks if user is either connecting or connecting_to & if connection is accepted by both people
                   ((activity.connecting_id === this.props.user.id || activity.connecting_to_id === this.props.user.id)
                     && activity.connecting_accepted && activity.connecting_to_accepted))).map((activity) =>
                       <tr key={activity.connections_id}>
@@ -104,6 +122,7 @@ class ActivityPage extends Component {
                           </h3>
                         </td>
                         <td className="activity-connected-you-with-container"><h2>connected you with</h2></td>
+                        {/* checks if user is connecting or connecting_to, conditionally renders other person avatar/name*/}
                         {activity.connecting_id === this.props.user.id ?
                           <>
                             <td><img className="activity-pending-avatar-small" src={activity.connecting_to_avatar} /></td>
@@ -123,6 +142,7 @@ class ActivityPage extends Component {
                             </td>
                           </>
                         }
+                        {/* view status of a connection when user is either connecting or connecting_to */}
                         <StatusModalConnectee activity={activity} />
                       </tr>
                     )}
@@ -133,9 +153,11 @@ class ActivityPage extends Component {
         </div>
         <div className="activity-people-you-connected-container">
           <h1>People You Connected</h1>
+          {/* checks if userActivity array has been returned from server */}
           {(this.props.userActivity.length > 0) ?
             <table>
               <tbody>
+                {/* checks if user is either connector */}
                 {(this.props.userActivity.filter(activity => activity.connector_id === this.props.user.id)).map((activity) =>
                   <tr key={activity.connections_id}>
                     <td><img className="activity-pending-avatar-small" src={activity.connecting_avatar} /></td>
@@ -150,6 +172,7 @@ class ActivityPage extends Component {
                         {activity.connecting_to_first_name} {activity.connecting_to_last_name}
                       </h3>
                     </td>
+                    {/* view status of a connection when user is either connector */}
                     <StatusModalConnector activity={activity} />
                   </tr>
                 )}
@@ -159,7 +182,7 @@ class ActivityPage extends Component {
           }
         </div>
         <pre>
-          {JSON.stringify(this.props.userActivity, null, 2)}
+          {/* {JSON.stringify(this.props.userActivity, null, 2)} */}
         </pre>
       </div>
     )
