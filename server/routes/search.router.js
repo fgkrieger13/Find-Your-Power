@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+// GET search results from user database based on what the user types into search bar
 router.get('/:string', (req, res) => {
     console.log('in search router', req.params.string);
     const queryText = `SELECT "first_name", "last_name", "username", "id", "services", "skills", "avatar" FROM "user"
