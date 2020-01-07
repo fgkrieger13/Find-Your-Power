@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-
+// Update connection status to accepted for the connecting user
 function* connectingAccepted(action) {
   try {
     yield axios.put('/api/activity/connecting-accept', action.payload);
@@ -11,6 +11,7 @@ function* connectingAccepted(action) {
   }
 }
 
+// Update connection status to accepted for the connecting_to user
 function* connectingToAccepted(action) {
   try {
     yield axios.put('/api/activity/connecting-to-accept', action.payload);
@@ -20,6 +21,7 @@ function* connectingToAccepted(action) {
   }
 }
 
+// Update connection status to denied
 function* denyConnection(action) {
   try {
     yield axios.put('/api/activity/deny-connection', action.payload);
@@ -29,6 +31,7 @@ function* denyConnection(action) {
   }
 }
 
+// Fetches all the connection activity for that user
 function* fetchUserActivity() {
   try {
     const response = yield axios.get('/api/activity');    
@@ -38,6 +41,7 @@ function* fetchUserActivity() {
   }
 }
 
+// Initiates the POST of connection request
 function* sendConnectionRequest(action) {
   try {
     yield axios.post('/api/activity', action.payload);    

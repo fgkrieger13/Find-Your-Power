@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+// Show search result item
 class SearchItem extends Component {
   render() {
     return (

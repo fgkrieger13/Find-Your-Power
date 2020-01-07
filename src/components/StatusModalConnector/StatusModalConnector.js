@@ -14,6 +14,7 @@ class StatusModalConnector extends Component {
 
   }
 
+  // open modal when Status button is clicked
   handleClickOpen = () => {
     console.log(this.state.open)
     this.setState({
@@ -22,6 +23,7 @@ class StatusModalConnector extends Component {
     })
   };
 
+  // close modal
   handleClose = () => {
     this.setState({
       ...this.state,
@@ -42,6 +44,7 @@ class StatusModalConnector extends Component {
               <DialogTitle><div className="underline"><h1>Connection Status</h1></div></DialogTitle>
               <DialogContent>
                 <h2>You Connected {this.props.activity.connecting_first_name} and {this.props.activity.connecting_to_first_name}</h2>
+                {/* Display status of response from each connectee in the initiated connection */}
                 <table>
                   <tbody>
                     <tr>
@@ -62,6 +65,7 @@ class StatusModalConnector extends Component {
                     </tr>
                   </tbody>
                 </table>
+                {/* Display status of kickback payment to connector */}
                 <table>
                   <tbody>
                     <tr>

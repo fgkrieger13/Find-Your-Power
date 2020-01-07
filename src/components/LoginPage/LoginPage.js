@@ -7,9 +7,11 @@ class LoginPage extends Component {
     password: '',
   };
 
+  // prevent default page refresh
   login = (event) => {
     event.preventDefault();
-
+  
+    // if both username and password are filled out, initiate login
     if (this.state.username && this.state.password) {
       this.props.dispatch({
         type: 'LOGIN',
@@ -23,6 +25,7 @@ class LoginPage extends Component {
     }
   } // end login
 
+  // handle input that user types for each property
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -40,6 +43,7 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
+        {/* login input fields */}
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
