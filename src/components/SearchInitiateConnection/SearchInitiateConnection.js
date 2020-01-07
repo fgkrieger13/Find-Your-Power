@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Show name and avatar of search result
 // On click of username user will be directed to that person's profile
@@ -12,7 +12,7 @@ class SearchInitiateConnection extends Component {
             <tr>
               <td><img className="search-avatar2" src={result.avatar} /></td>
               <td>
-                <h3 onClick={() => this.props.history.push(`/profile/${result.id}`)}>
+                <h3 onClick={() => {this.props.dispatch({type: 'SEARCH_NAME_CLICKED', payload: result.id})}}>
                   {result.first_name} {result.last_name}
                 </h3>
               </td>
@@ -24,4 +24,4 @@ class SearchInitiateConnection extends Component {
   }
 }
 
-export default withRouter(SearchInitiateConnection);
+export default connect()(SearchInitiateConnection);
