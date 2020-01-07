@@ -41,13 +41,13 @@ class ForgotPassword extends Component {
                     },
                 );
                 console.log(response.data);
-                // if (response.data === 'recovery email sent') {
-                //     this.setState({
-                //         showError: false,
-                //         messageFromServer: 'recovery email sent',
-                //         showNullError: false,
-                //     });
-                // }
+                if (response.data === 'recovery email sent') {
+                    this.setState({
+                        showError: false,
+                        messageFromServer: 'recovery email sent',
+                        showNullError: false,
+                    });
+                }
             } catch (error) {
                 console.error(error.response.data);
                 if (error.response.data === 'email not in db') {
