@@ -15,12 +15,13 @@ router.post('/', (req, res) => {
     }
     const queryText = `SELECT "username", "id" FROM "user" WHERE "username" = $1;`;
     pool.query(queryText, [req.body.email])
-        .then((user) => {
-            if (user === null) {
-                console.error('email not in database');
-                res.status(403).send('email not in db');
+        .then((results) => {
+            if (results.rows.length === 1) {
+                console.log('found user in db', results.rows);
+                res.status(200).json('recovery email sent');
             } else {
-                console.log('found user in db', user);
+                console.error('email not in database');
+                res.status(403).send('email not in db');                
                 // const token = crypto.randomBytes(20).toString('hex');
                 // user.update({
                 //     resetPasswordToken: token,
