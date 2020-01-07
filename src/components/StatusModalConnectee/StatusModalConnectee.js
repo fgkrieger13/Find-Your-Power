@@ -15,6 +15,7 @@ class StatusModalConnectee extends Component {
 
     }
 
+    // open modal when Status button is close
     handleClickOpen = () => {
         console.log(this.state.open)
         this.setState({
@@ -23,6 +24,7 @@ class StatusModalConnectee extends Component {
         })
     };
 
+    // close modal
     handleClose = () => {
         this.setState({
             ...this.state,
@@ -42,11 +44,13 @@ class StatusModalConnectee extends Component {
                             <div className="activity-connected-status-modal">
                                 <DialogTitle><div className="underline"><h1>Connection Status</h1></div></DialogTitle>
                                 <DialogContent>
+                                    {/* Display the connector and connectees involved in connection */}
                                     <h2>{this.props.activity.connector_first_name} connected you and {
                                         (this.props.activity.connecting_to_id === this.props.user.id) ? this.props.activity.connecting_first_name
                                             : this.props.activity.connecting_to_first_name
                                     }
                                     </h2>
+                                    {/* Display status of each connectee's response to connection invitation */}
                                     <table>
                                         {this.props.activity.connecting_to_id === this.props.user.id ?
                                             <tbody>
@@ -88,11 +92,13 @@ class StatusModalConnectee extends Component {
                                             </tbody>
                                         }
                                     </table>
+                                    {/* Display the connector and connectees involved in connection and display payment message*/}
                                     <h3>
                                         We encourage you to thank {this.props.activity.connector_first_name} for connecting you with 
                                         {(this.props.activity.connecting_to_id === this.props.user.id) ? ' ' + this.props.activity.connecting_first_name + ' ' + this.props.activity.connecting_last_name
                                             : ' ' + this.props.activity.connecting_to_first_name + ' ' + this.props.activity.connecting_to_last_name}!
                                     </h3>
+                                    {/* connectee inputs how much to pay connector */}
                                     <h2>
                                         Amount: <input placeholder="amount"/> through <button>Stripe</button>
                                     </h2>

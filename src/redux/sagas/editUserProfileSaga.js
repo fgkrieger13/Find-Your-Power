@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-
+// Update user's profile with edit information
 function* editUserProfile(action) {
   try {
     yield axios.put(`/api/myprofile/${action.payload.id}`, action.payload);

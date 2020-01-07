@@ -1,8 +1,4 @@
-
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
+-- Creates table of each user's profile information
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "first_name" VARCHAR (50) NOT NULL,
@@ -18,6 +14,7 @@ CREATE TABLE "user" (
     "avatar" VARCHAR (1000)
 );
 
+-- Creates table of the connector and connectees involved in each connection
 CREATE TABLE "connections" (
 	"id" SERIAL PRIMARY KEY,
 	"connecting_id" INT REFERENCES "user",
