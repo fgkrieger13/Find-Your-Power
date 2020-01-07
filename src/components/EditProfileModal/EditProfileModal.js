@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
+// When Edit button is clicked modal opens up where user profile information can be updated
 class EditProfileModal extends Component {
   state = {
     open: false,
@@ -21,6 +21,7 @@ class EditProfileModal extends Component {
     bio: '',
   }
 
+  // opens modal when Edit button is clicked
   handleClickOpen = () => {
     console.log(this.state.open)
     this.setState({
@@ -37,12 +38,14 @@ class EditProfileModal extends Component {
     })
   };
 
+  // handles modal close
   handleClose = () => {
     this.setState({
       open: false
     })
   };
 
+  // When Save button is clicked
   handleSave = () => {
     this.props.dispatch({ type: 'UPDATE_USER_PROFILE', payload: this.state })
     this.setState({
@@ -51,6 +54,7 @@ class EditProfileModal extends Component {
     })
   }
 
+  // Updates property with information that user inputs
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -63,6 +67,7 @@ class EditProfileModal extends Component {
         <button className="profile-view-connected-button" onClick={this.handleClickOpen}>
           Edit
       </button>
+      {/* Text fields to enter profile information */}
         <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Edit Profile</DialogTitle>
           <DialogContent>
