@@ -66,9 +66,6 @@ class MyProfile extends Component {
             <CountMyConnections user={this.props.user} profile={this.props.profile} />
           </div>
         </div>
-        <pre>
-          {JSON.stringify(this.state, null, 2)}
-        </pre>
 
       </div>
 
