@@ -8,7 +8,7 @@ const encryptLib = require('../modules/encryption');
 
 router.get('/:token', (req, res, next) => {
     console.log('in /api/resetpassword', req.params.token);
-    const queryText = `SELECT "username", "id" FROM "user" WHERE "token" = $1 AND "token_exp" > CURRENT_TIMESTAMP;`;
+    const queryText = `SELECT "username", "id" FROM "user" WHERE "token" = $1;`;
     pool.query(queryText, [req.params.token])
         .then((results) => {
             console.log('success, found user:', results.rows);
@@ -24,14 +24,13 @@ router.get('/:token', (req, res, next) => {
         })
 })
 
+
 router.put('/:id', (req, res, next) => {
     console.log('in PUT update password for', req.params.id);
-    
     const queryText = `SELECT "username", "id" FROM "user" WHERE "token" = $1 AND "token_exp" > CURRENT_TIMESTAMP;`;
     pool.query(queryText, [req.body.token])
         .then((results) => {
             console.log(results.rows[0].id);
-            
             if (results.rows[0].id == req.params.id){
                 const password = encryptLib.encryptPassword(req.body.password);
                 const queryText2 = `UPDATE "user" SET "password" = $1, "token" = null, "token_exp" = null WHERE "id" = $2`
