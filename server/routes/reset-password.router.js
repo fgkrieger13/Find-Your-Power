@@ -3,9 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const encryptLib = require('../modules/encryption');
 
-// const nodemailer = require('nodemailer');
-// const crypto = require('crypto');
-
+// GET user from token 
 router.get('/:token', (req, res, next) => {
     console.log('in /api/resetpassword', req.params.token);
     const queryText = `SELECT "username", "id" FROM "user" WHERE "token" = $1;`;
@@ -24,15 +22,18 @@ router.get('/:token', (req, res, next) => {
         })
 })
 
-
+// PUT updates password
 router.put('/:id', (req, res, next) => {
     console.log('in PUT update password for', req.params.id);
+    // get user from token, checks if token is expired
     const queryText = `SELECT "username", "id" FROM "user" WHERE "token" = $1 AND "token_exp" > CURRENT_TIMESTAMP;`;
     pool.query(queryText, [req.body.token])
         .then((results) => {
             console.log(results.rows[0].id);
             if (results.rows[0].id == req.params.id){
+                // salt/hash password
                 const password = encryptLib.encryptPassword(req.body.password);
+                // updates password in user table
                 const queryText2 = `UPDATE "user" SET "password" = $1, "token" = null, "token_exp" = null WHERE "id" = $2`
                 pool.query(queryText2, [password, req.params.id])
                     .then(() => {

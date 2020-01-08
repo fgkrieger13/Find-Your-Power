@@ -23,8 +23,10 @@ class ResetPassword extends Component {
         let token = this.props.match.params.id;
         try {
             console.log('on reset password view, token:', token);
+            // retrieves token from url to access user info
             const response = await axios.get(`api/resetpassword/${token}`);
             if (response.data.message === 'password reset link a-ok') {
+                // sets state to user info
                 this.setState({
                     username: response.data.username,
                     updated: false,
@@ -59,8 +61,10 @@ class ResetPassword extends Component {
         let lowerCaseLetters = /[a-z]/g;
         let upperCaseLetters = /[A-Z]/g;
         var numbers = /[0-9]/g;
+        // checks if new password meets password requirements
         if (password.match(lowerCaseLetters) && password.match(upperCaseLetters) && password.match(numbers) && password.length >= 7) {
             try {
+                // sends updated password to server
                 const response = await axios.put(
                     `api/resetpassword/${id}`,
                     {
@@ -91,6 +95,7 @@ class ResetPassword extends Component {
 
     render() {
         if (this.state.error) {
+            // renders error message, directs user back to log in page
             return (
                 <div>
                     <div>
@@ -106,12 +111,14 @@ class ResetPassword extends Component {
             );
         }
         if (this.state.isLoading) {
+            // renders loading message 
             return (
                 <div>
                     <h4>Loading User Data...</h4>
                 </div>
             );
         }
+        // renders input field to reset password
         return (
             <div>
                 {this.props.errors.registrationMessage && (
