@@ -594,6 +594,7 @@ only screen and (max-width: 1500px) {
     top: -9999px;
     left: -9999px;
   }
+}
 
   td:before {
     position: absolute;
@@ -604,8 +605,7 @@ only screen and (max-width: 1500px) {
     white-space: nowrap;
     margin-left: -150px;
   }
-
-.clicked {
+  .clicked {
     background-color: white;
     width: 36px;
     height: 36px;
@@ -620,5 +620,4 @@ only screen and (max-width: 1500px) {
     outline: none;
     border: bottom;
     cursor: pointer;
-
 }
