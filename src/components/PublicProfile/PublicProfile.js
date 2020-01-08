@@ -39,6 +39,9 @@ class PublicProfile extends Component {
                 <div className="profile-email">
                   <h3>{this.props.profile.username}</h3>
                 </div>
+                <div className="profile-email">
+                  <h3>venmo: {this.props.profile.venmo}</h3>
+                </div>
               </div>
             </div>
             <div className="profile-bio-container">

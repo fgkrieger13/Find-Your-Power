@@ -19,6 +19,7 @@ class EditProfileModal extends Component {
     services: '',
     roles: '',
     bio: '',
+    venmo: '',
   }
 
   // opens modal when Edit button is clicked
@@ -35,6 +36,7 @@ class EditProfileModal extends Component {
       services: this.props.user.services,
       roles: this.props.user.roles,
       bio: this.props.user.bio,
+      venmo: this.props.user.venmo
     })
   };
 
@@ -101,6 +103,14 @@ class EditProfileModal extends Component {
               label="Zipcode"
               multiline={true}
               value={this.state.zipcode}
+              fullWidth
+            />
+             <TextField
+              onChange={this.handleInputChangeFor('venmo')}
+              margin="normal"
+              label="Venmo Username"
+              multiline={true}
+              value={this.state.venmo}
               fullWidth
             />
             <TextField
