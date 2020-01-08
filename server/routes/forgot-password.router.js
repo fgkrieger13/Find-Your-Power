@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
             let token = crypto.createHash('sha1').update('abc').digest('hex');
             // updates token with expiration date in user table
             const queryText2 = `UPDATE "user"
-                    SET "token" = $2, "token_exp" = '2020-12-31'
+                    SET "token" = $2, "token_exp" = CURRENT_TIMESTAMP + '24:00:00'
                     WHERE "id" = $1;`;
             pool.query(queryText2, [results.rows[0].id, token])
                 .then(() => {

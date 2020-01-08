@@ -28,13 +28,6 @@ class ResetPassword extends Component {
 
       async componentDidMount() {
         let token = this.props.match.params.id;
-        // console.log('on reset password view, token:', token);
-        
-        // const {
-        //   match: {
-        //     params: { token },
-        //   },
-        // } = this.props;
         try {
           console.log('on reset password view, token:', token);
           const response = await axios.get(`api/resetpassword/${token}`);
