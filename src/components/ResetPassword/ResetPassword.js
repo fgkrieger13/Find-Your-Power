@@ -23,6 +23,7 @@ class ResetPassword extends Component {
           updated: false,
           isLoading: true,
           error: false,
+          userId: ''
         };
       }
 
@@ -31,18 +32,19 @@ class ResetPassword extends Component {
         try {
           console.log('on reset password view, token:', token);
           const response = await axios.get(`api/resetpassword/${token}`);
-          // console.log(response);
           if (response.data.message === 'password reset link a-ok') {
             this.setState({
               username: response.data.username,
               updated: false,
               isLoading: false,
               error: false,
+              userId: response.data.id
             });
           }
         } catch (error) {
           console.log(error.response.data);
           this.setState({
+            ...this.state,
             updated: false,
             isLoading: false,
             error: true,
@@ -52,43 +54,44 @@ class ResetPassword extends Component {
 
     handleChange = name => (event) => {
         this.setState({
+            ...this.state,
             [name]: event.target.value,
         });
     };
 
-    //   updatePassword = async (e) => {
-    //     e.preventDefault();
-    //     const { username, password } = this.state;
-    //     const {
-    //       match: {
-    //         params: { token },
-    //       },
-    //     } = this.props;
-    //     try {
-    //       const response = await axios.put(
-    //         'http://localhost:3003/updatePasswordViaEmail',
-    //         {
-    //           username,
-    //           password,
-    //           resetPasswordToken: token,
-    //         },
-    //       );
-    //       console.log(response.data);
-    //       if (response.data.message === 'password updated') {
-    //         this.setState({
-    //           updated: true,
-    //           error: false,
-    //         });
-    //       } else {
-    //         this.setState({
-    //           updated: false,
-    //           error: true,
-    //         });
-    //       }
-    //     } catch (error) {
-    //       console.log(error.response.data);
-    //     }
-    //   };
+      updatePassword = async (e) => {
+        e.preventDefault();
+        let username = this.state.username
+        let id = this.state.userId
+        let password = this.state.password
+        let token = this.props.match.params.id;
+        try {
+          const response = await axios.put(
+            `api/resetpassword/${id}`,
+            {
+              username,
+              password,
+              token,
+            },
+          );
+          console.log(response.data);
+          if (response.data.message === 'password updated') {
+            this.setState({
+              ...this.state,
+              updated: true,
+              error: false,
+            });
+          } else {
+            this.setState({
+              ...this.state,
+              updated: false,
+              error: true,
+            });
+          }
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      };
 
     render() {
         //     const {
@@ -126,7 +129,7 @@ class ResetPassword extends Component {
         return (
             <div>
                 <h1>Reset Password</h1>
-                <form className="password-form" onSubmit={this.updatePassword}>
+                <form className="password-form">
                     <label htmlFor="password">
                         <input
                             type="password"
@@ -135,7 +138,9 @@ class ResetPassword extends Component {
                             onChange={this.handleChange('password')}
                         />
                     </label>
-                    <button>Update Password</button>
+                    <button onClick={this.updatePassword}>
+                        Update Password
+                    </button>
                 </form>
                 <div>
                     <p>Password must contain a <b>capital</b> and <b>lowercase letter</b>, <b>one number</b>, and be at least <b>7 characters long.</b></p>
