@@ -514,8 +514,9 @@ tr, td {
 }
 
 .activity-connected-status-modal {
-    margin-top: -15px;
+    /* margin-top: -15px; */
     width: 100%;
+    /* height: 800px; */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -575,7 +576,7 @@ td {
 .initiate-connection-container {
     text-align: center;
 }
-
+/* 
 @media only screen and (max-width: 600px) {
     .profile-connected-summary-container {
         flex-direction: column;
@@ -595,7 +596,7 @@ only screen and (max-width: 1500px) {
     top: -9999px;
     left: -9999px;
   }
-}
+} */
 
   td:before {
     position: absolute;
@@ -636,4 +637,8 @@ only screen and (max-width: 1500px) {
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+.kickback-venmo-description {
+    margin-top: 100px;
 }

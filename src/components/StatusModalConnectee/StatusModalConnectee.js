@@ -4,15 +4,10 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
 class StatusModalConnectee extends Component {
 
   state = {
     open: false,
-  }
-
-  componentDidMount() {
-
   }
 
   // open modal when Status button is close
@@ -92,20 +87,23 @@ class StatusModalConnectee extends Component {
                       </tbody>
                     }
                   </table>
-                  {/* Display the connector and connectees involved in connection and display payment message*/}
+                  {/* Display the connector and connectees involved in connection and display payment message */}
                   <h2>
                     Show {this.props.activity.connector_first_name + ' '}
                     some connection affection by sending a kickback via Venmo.
                   </h2>
-                  {/* connectee inputs how much to pay connector */}
                   <h2>
-                  {this.props.activity.connector_first_name + '\'s '}Venmo:
-                  
+                    {this.props.activity.connector_first_name + '\'s '}Venmo:{' ' + this.props.activity.connector_venmo}
                   </h2>
-                  <button className="kickback-sent-button">Kickback Sent!</button>
+                  <div className="kickback-venmo-description">
+                    <h5>
+                      This transaction needs to happen between you and the recepient on the Venmo application.
+                      Find Your Power does not facilitate any exchange of money between you and the recepient.
+                      We are only providing you with their Venmo username.
+                  </h5>
+                  </div>
                 </DialogContent>
               </div>
-              <pre>{JSON.stringify(this.props.activity, null, 2)}</pre>
             </Dialog>
             : ''
           }
