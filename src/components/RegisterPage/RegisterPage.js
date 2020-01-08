@@ -88,6 +88,7 @@ class RegisterPage extends Component {
               value="Login"
               onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
             />
+            </div>
             <div>
               <p>Password must contain a <b>capital</b> and <b>lowercase letter</b>, <b>one number</b>, and be at least <b>7 characters long.</b></p>
             </div>
