@@ -94,7 +94,7 @@ class RegisterPage extends Component {
               <p>Password must contain a <b>capital</b> and <b>lowercase letter</b>, <b>one number</b>, and be at least <b>7 characters long.</b></p>
             </div>
           </form>
-          {this.state.showPasswordRule ?
+          {/* {this.state.showPasswordRule ?
             <div id="message">
               <h3>Password must contain the following:</h3>
               <p id="letter"
@@ -107,7 +107,7 @@ class RegisterPage extends Component {
               <p id="length" className="invalid-password">Minimum <b>8 characters</b></p>
             </div>
             : ''
-          }
+          } */}
         </div>
       </div>
     );
