@@ -6,6 +6,7 @@ const router = express.Router();
 
 // UPDATE user's profile page with the information that they input
 router.put('/:id', rejectUnauthenticated, (req, res, next) => {
+  console.log('hit')
   const queryText = `UPDATE "user" 
   SET first_name = $1, 
   last_name = $2,
@@ -14,9 +15,10 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
   skills = $5,
   services = $6,
   roles = $7,
-  bio = $8
-  WHERE "user".id=$9;`;
-  pool.query(queryText, [req.body.first_name, req.body.last_name, req.body.username, req.body.zipcode, req.body.skills, req.body.services, req.body.roles, req.body.bio, req.user.id])
+  bio = $8,
+  venmo = $9
+  WHERE "user".id=$10;`;
+  pool.query(queryText, [req.body.first_name, req.body.last_name, req.body.username, req.body.zipcode, req.body.skills, req.body.services, req.body.roles, req.body.bio, req.body.venmo, req.user.id])
     .then(() => res.sendStatus(200))
     .catch((error) => {
       console.log('Error in router PUT My Profile', error)

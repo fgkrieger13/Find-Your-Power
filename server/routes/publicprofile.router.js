@@ -4,7 +4,7 @@ const router = express.Router();
 
 // GET route to retrieve public profile data
 router.get('/:id', (req, res, next) => { 
-  const queryText = `SELECT "id", "first_name", "last_name", "username", "time_user", "zipcode", "skills", "services", "roles", "avatar", "bio" FROM "user"
+  const queryText = `SELECT "id", "first_name", "last_name", "username", "time_user", "zipcode", "skills", "services", "roles", "avatar", "bio", "venmo" FROM "user"
   WHERE "id" = $1;`;
   pool.query(queryText, [req.params.id])
     .then((response) => res.send(response.rows))
