@@ -18,6 +18,7 @@ import MyProfile from '../MyProfile/MyProfile';
 import ActivityPage from '../ActivityPage/ActivityPage';
 import SearchPage from '../SearchPage/SearchPage';
 import PublicProfile from '../PublicProfile/PublicProfile';
+import ResetPassword from '../ResetPassword/ResetPassword';
 
 import './App.css';
 
@@ -51,6 +52,11 @@ class App extends Component {
               path="/profile/:id"
               component={PublicProfile}
             />
+            <Route
+            exact path="/reset/:id"
+            component={ResetPassword}
+            />
+
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the MyProfile if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
