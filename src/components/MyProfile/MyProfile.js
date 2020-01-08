@@ -27,6 +27,9 @@ class MyProfile extends Component {
             <div className="profile-email">
               <h3>{this.props.user.username}</h3>
             </div>
+            <div className="profile-email">
+              <h3>venmo: {this.props.user.venmo}</h3>
+            </div>
           </div>
         </div>
         <div className="profile-bio-container">

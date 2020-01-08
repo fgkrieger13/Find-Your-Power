@@ -43,72 +43,56 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="register-container">
         {this.props.errors.registrationMessage && (
           <h2 className="alert" role="alert"> {this.props.errors.registrationMessage}</h2>
         )}
-        <div className="register-container">
-          <form onSubmit={this.registerUser}>
-            <h1>Register User.</h1>
+        <form onSubmit={this.registerUser}>
+          <h1>Register User.</h1>
+          <input
+            placeholder="FIRST NAME"
+            type="text"
+            value={this.state.first_name}
+            onChange={this.handleInputChangeFor('first_name')}
+          />
+          <input
+            placeholder="LAST NAME"
+            type="text"
+            value={this.state.last_name}
+            onChange={this.handleInputChangeFor('last_name')}
+          />
+          <input
+            placeholder="EMAIL"
+            type="text"
+            value={this.state.username}
+            onChange={this.handleInputChangeFor('username')}
+          />
+          <input
+            placeholder="PASSWORD"
+            type="password"
+            value={this.state.password}
+            onClick={this.handleShowPasswordRule}
+            onChange={this.handleInputChangeFor('password')}
+          />
+          <div className="register-buttons-container">
             <input
-              placeholder="FIRST NAME"
-              type="text"
-              value={this.state.first_name}
-              onChange={this.handleInputChangeFor('first_name')}
+              className="register"
+              type="submit"
+              name="submit"
+              value="Register"
+              onClick={this.registerUser}
             />
             <input
-              placeholder="LAST NAME"
-              type="text"
-              value={this.state.last_name}
-              onChange={this.handleInputChangeFor('last_name')}
+              className="log-in"
+              type="button"
+              value="Login"
+              onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
             />
-            <input
-              placeholder="EMAIL"
-              type="text"
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-            <input
-              placeholder="PASSWORD"
-              type="password"
-              value={this.state.password}
-              onClick={this.handleShowPasswordRule}
-              onChange={this.handleInputChangeFor('password')}
-            />
-            <div className="register-buttons-container">
-              <input
-                className="register"
-                type="submit"
-                name="submit"
-                value="Register"
-                onClick={this.registerUser}
-              />
-              <input
-                className="log-in"
-                type="button"
-                value="Login"
-                onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
-              />
             </div>
             <div>
               <p>Password must contain a <b>capital</b> and <b>lowercase letter</b>, <b>one number</b>, and be at least <b>7 characters long.</b></p>
             </div>
           </form>
-          {this.state.showPasswordRule ?
-            <div id="message">
-              <h3>Password must contain the following:</h3>
-              <p id="letter"
-                className={this.state.passwordLetter ? "valid-password" : "invalid-password"}
-              >
-                A <b>lowercase</b> letter
-              </p>
-              <p id="capital" className="invalid-password">A <b>capital (uppercase)</b> letter</p>
-              <p id="number" className="invalid-password">A <b>number</b></p>
-              <p id="length" className="invalid-password">Minimum <b>8 characters</b></p>
-            </div>
-            : ''
-          }
-        </div>
       </div>
     );
   }
