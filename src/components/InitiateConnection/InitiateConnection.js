@@ -47,7 +47,7 @@ class initiateConnectionModal extends Component {
 
   // initiate new connection request
   handleSendConnectionRequest = (connectingId) => {
-    this.props.dispatch({ type: 'SEND_CONNECTION-REQUEST', payload: { connecting_id: connectingId, connecting_to_id: this.props.id, connector_id: this.props.user.id, message: this.state.connection.message } });
+    this.props.dispatch({ type: 'SEND_CONNECTION_REQUEST', payload: { connecting_id: connectingId, connecting_to_id: this.props.id, connector_id: this.props.user.id, message: this.state.connection.message } });
     this.handleClose();
   }
 
@@ -112,8 +112,7 @@ class initiateConnectionModal extends Component {
                             </button>
 
             </DialogActions>
-            {/* <pre>{JSON.stringify(this.props.id, null, 2)}</pre>
-            <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
+            {<pre>{JSON.stringify(this.props.id, null, 2)}</pre>}
           </Dialog>
         </div>
       </>

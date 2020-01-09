@@ -17,7 +17,7 @@ class SearchInitiateConnection extends Component {
               <td><img className="search-avatar2" src={result.avatar} /></td>
               <td>
                 <h3 onClick={() => {
-                  this.props.dispatch({ type: 'SEARCH_NAME_CLICKED', payload: result.id })
+                  
                   this.setState({ clicked: result.id })
                 }}>
                   {result.first_name} {result.last_name}
@@ -30,6 +30,7 @@ class SearchInitiateConnection extends Component {
                 :
                 <td><button className='clicked' onClick={() => {
                   this.setState({ clicked: result.id })
+                  this.props.dispatch({ type: 'SEARCH_NAME_CLICKED', payload: result.id })
                 }}></button></td>
               }
             </tr>
