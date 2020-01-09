@@ -5,7 +5,7 @@ CREATE TABLE "user" (
     "last_name" VARCHAR (80) NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "username" VARCHAR (150) UNIQUE NOT NULL,
-    "time_user" TIMESTAMP,
+    "time_user" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     "zipcode" INT,
     "bio" VARCHAR (1000),
     "skills" TEXT,
