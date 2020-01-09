@@ -21,7 +21,6 @@ class SearchPage extends Component {
         <div>
           <SearchItem results={this.props.results} />
           </div>
-        {/* <pre>{JSON.stringify(this.props.results, null, 2)}</pre> */}
       </div>
       </div>
     )

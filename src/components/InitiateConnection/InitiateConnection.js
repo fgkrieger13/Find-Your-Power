@@ -112,7 +112,6 @@ class initiateConnectionModal extends Component {
                             </button>
 
             </DialogActions>
-            {<pre>{JSON.stringify(this.props.id, null, 2)}</pre>}
           </Dialog>
         </div>
       </>

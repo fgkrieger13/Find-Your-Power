@@ -67,7 +67,6 @@ class StatusModalConnector extends Component {
                 </table>
               </DialogContent>
               </div>
-              {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
             </Dialog>
             : ''
           }

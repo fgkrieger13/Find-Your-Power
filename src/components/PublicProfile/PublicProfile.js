@@ -74,7 +74,6 @@ class PublicProfile extends Component {
           </div>
           : ''
         }
-        <pre>{JSON.stringify(this.props.profile, null, 2)}</pre>
       </>
     )
   }
