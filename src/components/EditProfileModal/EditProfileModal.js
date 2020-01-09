@@ -155,7 +155,6 @@ class EditProfileModal extends Component {
           </button>
           </DialogActions>
         </Dialog>
-        {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
       </div>
     );
   }

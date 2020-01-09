@@ -184,9 +184,6 @@ class ActivityPage extends Component {
             : ''
           }
         </div>
-        <pre>
-          {/* {JSON.stringify(this.props.userActivity, null, 2)} */}
-        </pre>
       </div>
     )
   }

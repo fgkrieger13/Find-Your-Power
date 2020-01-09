@@ -36,7 +36,6 @@ class SearchInitiateConnection extends Component {
             </tr>
           )}
         </tbody>
-        <pre>{JSON.stringify(this.state.clicked, null, 2)}</pre>
       </table>
     )
   }
