@@ -97,8 +97,8 @@ class StatusModalConnectee extends Component {
                   </h2>
                   <div className="kickback-venmo-description">
                     <h5>
-                      This transaction needs to happen between you and the recepient on the Venmo application.
-                      Find Your Power does not facilitate any exchange of money between you and the recepient.
+                      This transaction needs to happen between you and the recipient on the Venmo application.
+                      Find Your Power does not facilitate any exchange of money between you and the recipient.
                       We are only providing you with their Venmo username.
                   </h5>
                   </div>
