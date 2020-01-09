@@ -9,7 +9,7 @@ const Nav = (props) => (
     <Link to="/home">
       <img className="nav-title" src={require('./logo.png')}></img>
     </Link>
-    <h2 className= "logo-title">Lady BO$$ League</h2>
+    <h2 className= "logo-title">Lady Boss League</h2>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
