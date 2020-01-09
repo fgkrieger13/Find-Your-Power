@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 // Show search result item
 class SearchItem extends Component {
@@ -14,7 +16,7 @@ class SearchItem extends Component {
               <td><h2 className="search-head-row">Services</h2></td>
               <td><h2 className="search-head-row">Skills</h2></td>
             </tr>}
-          {this.props.results.map(result =>
+          {(this.props.results.filter(result => result.id !== this.props.user.id)).map(result =>
             <tr>
               <td><img className="search-avatar" src={result.avatar} /></td>
               <td>
@@ -32,4 +34,8 @@ class SearchItem extends Component {
   }
 }
 
-export default withRouter(SearchItem);
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default withRouter(connect(mapStateToProps)(SearchItem));
