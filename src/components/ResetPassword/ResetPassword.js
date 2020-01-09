@@ -22,7 +22,6 @@ class ResetPassword extends Component {
     async componentDidMount() {
         let token = this.props.match.params.id;
         try {
-            console.log('on reset password view, token:', token);
             // retrieves token from url to access user info
             const response = await axios.get(`api/resetpassword/${token}`);
             if (response.data.message === 'password reset link a-ok') {
@@ -73,7 +72,6 @@ class ResetPassword extends Component {
                         token,
                     },
                 );
-                console.log(response.data);
                 if (response.data.message === 'password updated') {
                     this.setState({
                         updated: true,

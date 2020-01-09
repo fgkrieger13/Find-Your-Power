@@ -20,7 +20,6 @@ class ForgotPassword extends Component {
   };
 
   sendEmail = async (e) => {
-    console.log('in sendEmail');
     e.preventDefault();
     const { email } = this.state;
     //checks if email field is blank 

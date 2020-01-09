@@ -5,11 +5,9 @@ const encryptLib = require('../modules/encryption');
 
 // GET user from token 
 router.get('/:token', (req, res, next) => {
-    console.log('in /api/resetpassword', req.params.token);
     const queryText = `SELECT "username", "id" FROM "user" WHERE "token" = $1;`;
     pool.query(queryText, [req.params.token])
         .then((results) => {
-            console.log('success, found user:', results.rows);
             res.status(200).send({
                 username: results.rows[0].username,
                 message: 'password reset link a-ok',
@@ -24,12 +22,10 @@ router.get('/:token', (req, res, next) => {
 
 // PUT updates password
 router.put('/:id', (req, res, next) => {
-    console.log('in PUT update password for', req.params.id);
     // get user from token, checks if token is expired
     const queryText = `SELECT "username", "id" FROM "user" WHERE "token" = $1 AND "token_exp" > CURRENT_TIMESTAMP;`;
     pool.query(queryText, [req.body.token])
         .then((results) => {
-            console.log(results.rows[0].id);
             if (results.rows[0].id == req.params.id){
                 // salt/hash password
                 const password = encryptLib.encryptPassword(req.body.password);
@@ -37,7 +33,6 @@ router.put('/:id', (req, res, next) => {
                 const queryText2 = `UPDATE "user" SET "password" = $1, "token" = null, "token_exp" = null WHERE "id" = $2`
                 pool.query(queryText2, [password, req.params.id])
                     .then(() => {
-                        console.log('password updated for', req.body.username);
                         res.status(200).send({ message: 'password updated' });
                     })
                     .catch((err) => {
@@ -45,7 +40,6 @@ router.put('/:id', (req, res, next) => {
                         res.status(404).json('no user exists in db to update')
                     })
             } else {
-                console.log('no match for id');
                 res.sendStatus(403)
             }
         })
