@@ -63,9 +63,6 @@ router.put('/deny-connection', rejectUnauthenticated, checkAuthorizationToDeny, 
 // ---- POST's ----
 // POST new initiated connection to the database
 router.post('/', rejectUnauthenticated, async (req, res) => {
-  console.log(req.body);
-  
-  
   const connection = await pool.connect();
   try {
     await connection.query('BEGIN;')
@@ -75,7 +72,6 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     VALUES ($1, $2, $3, $4);`;
     // Check to see if a connection already exists between the two users
     activeConnection = await connection.query(sqlText1, [req.body.connecting_id, req.body.connecting_to_id]);
-    console.log('active connection:', activeConnection.rows);
     // Add new connection between connecting user and connecting_to user into the database if there is not already a connection between them
     if(activeConnection.rows.length < 1){
       await connection.query(sqlText2, [req.body.connecting_id, req.body.connecting_to_id, req.body.connector_id, req.body.message])

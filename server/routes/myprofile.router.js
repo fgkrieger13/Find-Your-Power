@@ -6,7 +6,6 @@ const router = express.Router();
 
 // UPDATE user's profile page with the information that they input
 router.put('/:id', rejectUnauthenticated, (req, res, next) => {
-  console.log('hit')
   const queryText = `UPDATE "user" 
   SET first_name = $1, 
   last_name = $2,

@@ -24,7 +24,6 @@ class initiateConnectionModal extends Component {
 
   // handles which user id is entered for search
   searchUsers = (event) => {
-    console.log('searching users');
     this.setState({
       ...this.state,
       connection: {
@@ -106,11 +105,10 @@ class initiateConnectionModal extends Component {
             <DialogActions >
               <button className="profile-view-connected-button" onClick={() => this.handleSendConnectionRequest(this.props.profile.id)} color="primary">
                 Connect
-                            </button>
+              </button>
               <button className="profile-edit-cancel-button" onClick={this.handleClose} color="primary">
                 Cancel
-                            </button>
-
+              </button>
             </DialogActions>
           </Dialog>
         </div>
