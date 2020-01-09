@@ -79,6 +79,8 @@ class ResetPassword extends Component {
                         updated: true,
                         error: false,
                     });
+                    this.props.dispatch({ type: 'LOGIN', payload: {username: username, password: password} });
+                    this.props.history.push('/');
                 } else {
                     this.setState({
                         updated: false,
