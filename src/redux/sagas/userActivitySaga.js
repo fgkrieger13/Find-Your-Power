@@ -1,4 +1,5 @@
 import axios from 'axios';
+import swal from 'sweetalert';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Update connection status to accepted for the connecting user
@@ -46,6 +47,7 @@ function* sendConnectionRequest(action) {
   try {
     yield axios.post('/api/activity', action.payload);    
   } catch (error) {
+    swal(`This connection already exists!`)
     console.log('Activity post request failed', error);
   }
 }

@@ -642,3 +642,17 @@ only screen and (max-width: 500px) {
 .kickback-venmo-description {
     margin-top: 100px;
 }
+
+.swal-footer {
+    text-align: center;
+  }
+
+  .swal-button--confirm {
+    background: #f29475;
+    outline: none;
+}
+.swal-text {
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 24px;
+}
