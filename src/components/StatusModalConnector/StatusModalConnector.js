@@ -65,21 +65,6 @@ class StatusModalConnector extends Component {
                     </tr>
                   </tbody>
                 </table>
-                {/* Display status of kickback payment to connector */}
-                <table>
-                  <tbody>
-                    <tr>
-                      <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_avatar} /></td>
-                      <td>{this.props.activity.connecting_first_name} {this.props.activity.connecting_last_name}</td>
-                      <td>Kickback Pending</td>
-                    </tr>
-                    <tr>
-                      <td><img className="activity-pending-avatar-small" src={this.props.activity.connecting_to_avatar} /></td>
-                      <td>{this.props.activity.connecting_to_first_name} {this.props.activity.connecting_to_last_name}</td>
-                      <td>Kickback Pending</td>
-                    </tr>
-                  </tbody>
-                </table>
               </DialogContent>
               </div>
               {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
