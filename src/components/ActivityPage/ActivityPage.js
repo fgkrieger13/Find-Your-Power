@@ -96,9 +96,13 @@ class ActivityPage extends Component {
                           </div>
                           :
                           activity.connecting_id === this.props.user.id ?
-                                  <p>Waiting for {activity.connecting_to_first_name} to accept</p>
-                                  :
-                                  <p>Waiting for {activity.connecting_first_name} to accept</p>
+                            <div className="activity-pending-button-container">
+                              <h4>Waiting for {activity.connecting_to_first_name} to accept.</h4>
+                            </div>
+                            :
+                            <div className="activity-pending-button-container">
+                              <h4>Waiting for {activity.connecting_first_name} to accept.</h4>
+                            </div>
                         }
                       </div>
                     </div>

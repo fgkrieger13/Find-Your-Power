@@ -467,6 +467,7 @@ h1 {
     flex-direction: column;
     padding: 10px;
     margin-right: 40px;
+    width: 140px;
 }
 
 .activity-suggested-by {
