@@ -51,4 +51,8 @@ class ImageUpload extends Component {
 
 }
 
-export default connect()(ImageUpload);
+const mapStateToProps = state => ({
+    user: state.user,
+  });
+
+export default connect(mapStateToProps)(ImageUpload);

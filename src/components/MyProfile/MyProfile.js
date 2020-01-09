@@ -12,7 +12,8 @@ class MyProfile extends Component {
       <div className="profile-container">
         <div className="profile-header-container">
         {/* Display user avatar or show the option to upload an image */}
-        {this.props.user.avatar ? <img className="public-profile-avatar" src={this.props.user.avatar} />
+        {this.props.user.avatar !== 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg' ? 
+        <img className="public-profile-avatar" src={this.props.user.avatar} />
         :
         <div className="profile-photo">
         <ImageUpload/>
