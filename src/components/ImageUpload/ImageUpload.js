@@ -14,9 +14,7 @@ const dropStyle = {
 class ImageUpload extends Component {
 
     handleFinishedUpload = info => {
-        console.log(info);
-        // console.log('File uploaded with filename', info.filename)
-        console.log('Access it on s3 at', info.fileUrl)
+        
         this.props.dispatch({ type: 'POST_IMAGE_URL', payload: info.fileUrl })
         this.props.dispatch({type: 'FETCH_USER'})
     }
@@ -46,6 +44,7 @@ class ImageUpload extends Component {
                 maxSize={1024 * 1024 * 5}
                 upload={uploadOptions}
                 style={dropStyle}
+                ContentType= 'image/jpeg'
             />
         )
     }

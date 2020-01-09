@@ -24,7 +24,6 @@ class EditProfileModal extends Component {
 
   // opens modal when Edit button is clicked
   handleClickOpen = () => {
-    console.log(this.state.open)
     this.setState({
       ...this.state,
       open: true,

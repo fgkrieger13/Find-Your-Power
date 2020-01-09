@@ -12,7 +12,6 @@ class StatusModalConnectee extends Component {
 
   // open modal when Status button is close
   handleClickOpen = () => {
-    console.log(this.state.open)
     this.setState({
       ...this.state,
       open: true

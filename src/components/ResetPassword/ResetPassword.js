@@ -1,9 +1,6 @@
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import axios from 'axios';
-
 
 class ResetPassword extends Component {
   constructor() {
@@ -22,7 +19,6 @@ class ResetPassword extends Component {
   async componentDidMount() {
     let token = this.props.match.params.id;
     try {
-      console.log('on reset password view, token:', token);
       // retrieves token from url to access user info
       const response = await axios.get(`api/resetpassword/${token}`);
       if (response.data.message === 'password reset link a-ok') {
@@ -52,6 +48,7 @@ class ResetPassword extends Component {
     });
   };
 
+
   updatePassword = async (e) => {
     e.preventDefault();
     let username = this.state.username
@@ -73,7 +70,6 @@ class ResetPassword extends Component {
             token,
           },
         );
-        console.log(response.data);
         if (response.data.message === 'password updated') {
           this.setState({
             updated: true,
@@ -99,7 +95,6 @@ class ResetPassword extends Component {
     if (this.state.error) {
       // renders error message, directs user back to log in page
       return (
-        
           <div>
             <center>
             <h4>Problem resetting password. Please send another reset link.</h4>
@@ -111,7 +106,6 @@ class ResetPassword extends Component {
             />
             </center>
           </div>
-        
       );
     }
     if (this.state.isLoading) {
@@ -149,10 +143,8 @@ class ResetPassword extends Component {
           type="button"
           value="Update Password" 
           onClick={this.updatePassword}
-          
           />
         </form>
-
         <p>Password must contain a <b>capital</b> and <b>lowercase letter</b>, <b>one number</b>, and be at least <b>7 characters long.</b></p>
         </center>
       </div>

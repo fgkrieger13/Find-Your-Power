@@ -15,7 +15,6 @@ class CountConnections extends Component {
   }
 
   handleClickOpen = () => {
-    console.log(this.state.open)
     this.setState({
       ...this.state,
       open: true
