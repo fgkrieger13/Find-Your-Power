@@ -56,7 +56,7 @@ function* userSaga() {
   yield takeLatest('CHANGE_CONNECTING_ACCEPTED', connectingAccepted);
   yield takeLatest('CHANGE_CONNECTING_TO_ACCEPTED', connectingToAccepted);
   yield takeLatest('DENY_CONNECTION', denyConnection);
-  yield takeLatest('SEND_CONNECTION-REQUEST', sendConnectionRequest);
+  yield takeLatest('SEND_CONNECTION_REQUEST', sendConnectionRequest);
 
 }
 
