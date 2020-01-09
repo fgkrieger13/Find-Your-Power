@@ -83,7 +83,7 @@ class ForgotPassword extends Component {
           <input
             type="button"
             className="reset-password"
-            value="Reset Password"
+            value="Send Password Reset Link"
             onClick={(e) => { this.sendEmail(e) }}
           />
           <input
