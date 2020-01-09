@@ -95,7 +95,10 @@ class ActivityPage extends Component {
                             </button>
                           </div>
                           :
-                          ''
+                          activity.connecting_id === this.props.user.id ?
+                                  <p>Waiting for {activity.connecting_to_first_name} to accept</p>
+                                  :
+                                  <p>Waiting for {activity.connecting_first_name} to accept</p>
                         }
                       </div>
                     </div>
