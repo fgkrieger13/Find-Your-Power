@@ -47,7 +47,7 @@ function* sendConnectionRequest(action) {
   try {
     yield axios.post('/api/activity', action.payload);    
   } catch (error) {
-    swal(`This connection already exists!`)
+    swal(`This connection already exists!`);
     console.log('Activity post request failed', error);
   }
 }
