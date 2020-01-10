@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -47,6 +48,7 @@ class initiateConnectionModal extends Component {
   // initiate new connection request
   handleSendConnectionRequest = (connectingId) => {
     this.props.dispatch({ type: 'SEND_CONNECTION_REQUEST', payload: { connecting_id: connectingId, connecting_to_id: this.props.id, connector_id: this.props.user.id, message: this.state.connection.message } });
+    swal(`Connection request sent!`);
     this.handleClose();
   }
 
