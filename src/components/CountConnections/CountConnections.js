@@ -11,6 +11,7 @@ class CountConnections extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.profile_id);
     this.props.dispatch({ type: 'FETCH_PUBLIC_ACTIVITY', payload: { profile_id: this.props.profile.id } })
   }
 
@@ -73,6 +74,7 @@ class CountConnections extends Component {
 }
 
 const mapStateToProps = state => ({
+  profile_id: state.publicProfileReducer[0].id,
   user: state.user,
   publicActivity: state.publicActivityReducer,
 });
