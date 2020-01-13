@@ -13,6 +13,8 @@ function* fetchProfile(action) {
 
 // Fetches public user's connections activity
 function* fetchPublicActivity(action) {
+  console.log('in fetchPublicActivity with:', action.payload);
+  
   try {
     const response = yield axios.get(`/api/publicprofile/connections/${action.payload.profile_id}`);    
     yield put({ type: 'SET_PUBLIC_ACTIVITY', payload: response.data });
