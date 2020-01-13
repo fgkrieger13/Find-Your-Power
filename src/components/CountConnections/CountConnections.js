@@ -34,9 +34,9 @@ class CountConnections extends Component {
       <>
         <div className="profile-connected-summary-container">
           {/* checks if publicActivity array has returned from server */}
-          {(this.props.publicActivity.length > 0) ?
+          {(this.props.publicActivity.length > 0) &&
             <h1>Connections Made: {(this.props.publicActivity.filter(activity => activity.connector_id === this.props.profile.id)).length} </h1>
-            : <h1>0 Connections Made</h1>
+            
           }
           {/* opens public view of connections Modal */}
           <button onClick={this.handleClickOpen}
