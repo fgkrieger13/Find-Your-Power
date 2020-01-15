@@ -42,8 +42,8 @@ class PublicProfile extends Component {
   render() {
     return (
       <>
+        {/* profile photo */}
         {this.props.profile ?
-
           <div className="profile-container">
             <div className="profile-header-container">
               {this.props.profile.avatar ?
@@ -58,13 +58,16 @@ class PublicProfile extends Component {
                 </div>
               </div>
             </div>
+            {/* profile bio in top left with connect button below */}
             <div className="profile-bio-container">
               <h3>Bio:</h3>
               <p className="profile-bio">{this.props.profile.bio}</p>
             </div>
+            {/* initiate connection is a dialogue modal with search */}
             <div className="profile-button-placement">
               <InitiateConnection connectingId={this.props.profile.id} />
             </div>
+            {/* info section in bottom center */}
             <div className="profile-info-container">
               <div className="profile-info-header">
                 <h2>My Info</h2>
