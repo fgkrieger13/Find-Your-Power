@@ -1,6 +1,14 @@
 # Find Your Power: A Social Network for Professional Women
 This project was created to bring a vision into reality: `Find Your Power`, a local non-profit, wanted to create a community where women can network with each other. As connections are made, women help each other by sharing their skills and resources. The goal is that these partnerships will empower women to be successful and thrive in their businesses. This web application is an interactive social network where women can connect with each other. Users can build a profile which reflects their skills, services, and description of themselves as a professional and they can also facilitate connections by introducing users to each other. 
 
+![user profile](src/images/brigitte-profile.png)
+![user profile](src/images/pending-connections.png)
+![user profile](src/images/connections.png)
+![user profile](src/images/live-search.png)
+![user profile](src/images/initiate-connection.png)
+![user profile](src/images/connections-made.png)
+
+
 
 ## Prerequisites
 In order to run this project, the following software needed to be installed:
@@ -29,9 +37,10 @@ CREATE TABLE "user" (
     "skills" TEXT,
     "services" TEXT,
     "roles" TEXT,
-    "avatar" VARCHAR (1000),
+    "avatar" VARCHAR (1000) DEFAULT 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
     "token" VARCHAR (1000),
     "token_exp" TIMESTAMP,
+    "venmo" TEXT
 );
 
 CREATE TABLE "connections" (
