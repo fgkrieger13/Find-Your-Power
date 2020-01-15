@@ -34,6 +34,7 @@ class ForgotPassword extends Component {
       try {
         const response = await axios.post('api/forgotpassword',
           { email });
+          // message sent to user's email w/ url for password reset
         if (response.data === 'recovery email sent') {
           this.setState({
             showError: false,
@@ -43,6 +44,7 @@ class ForgotPassword extends Component {
         }
       } catch (error) {
         console.error(error.response.data);
+        // email invalid
         if (error.response.data === 'email not in db') {
           this.setState({
             showError: true,
