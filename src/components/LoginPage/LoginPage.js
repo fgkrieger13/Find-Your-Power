@@ -29,22 +29,7 @@ class LoginPage extends Component {
     });
   }
 
-  //quick key for presentation
-  loginCarolyn = () => {
-    this.setState({
-      username: 'carolyn.hawkins@gmail.com',
-      password: 'Hello123',
-    })
-  }
 
-   //quick key for presentation
-  loginBrigette = () => {
-    this.setState({
-      username: 'brigittemetts@gmail.com',
-      password: 'Hello123',
-    })
-  }
-// login page order for inputs
   render() {
     return (
       <div className="login-container">
@@ -58,7 +43,7 @@ class LoginPage extends Component {
             </h2>
           )}
           <form onSubmit={this.login}>
-            <h1><span onClick={this.loginCarolyn}>L</span>ogi<span onClick={this.loginBrigette}>n</span></h1>
+            <h1>Login</h1>
             <label htmlFor="username">
               <input
                 type="text"
