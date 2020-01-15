@@ -11,9 +11,10 @@ CREATE TABLE "user" (
     "skills" TEXT,
     "services" TEXT,
     "roles" TEXT,
-    "avatar" VARCHAR (1000),
+    "avatar" VARCHAR (1000) DEFAULT 'https://ramcotubular.com/wp-content/uploads/default-avatar.jpg',
     "token" VARCHAR (1000),
-    "token_exp" TIMESTAMP
+    "token_exp" TIMESTAMP,
+    "venmo" TEXT
 );
 
 -- Creates table of the connector and connectees involved in each connection
