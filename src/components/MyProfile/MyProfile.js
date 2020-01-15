@@ -20,7 +20,9 @@ class MyProfile extends Component {
         </div>}
         {/* <img className="public-profile-avatar" src={this.props.user.avatar} />
           <ImageUpload/> */}
-          
+
+
+          {/* top left corner information */}
           <div className="profile-name-email-container">
             <div className="profile-name">
               <h2>{this.props.user.first_name} {this.props.user.last_name}</h2>
@@ -37,6 +39,8 @@ class MyProfile extends Component {
           <h3>Bio:</h3>
           <p className="profile-bio">{this.props.user.bio}</p>
         </div>
+
+        {/* buttons below top left */}
         <div className="profile-button-placement">
           <div className="profile-edit-button-placement">
           <EditProfileModal />
@@ -45,6 +49,8 @@ class MyProfile extends Component {
             <LogOutButton className="profile-view-connected-button" />
           </div>
         </div>
+
+        {/* info section in bottom center of page */}
         <div className="profile-info-container">
           <div className="profile-info-header">
             <h2>My Info</h2>
@@ -63,6 +69,8 @@ class MyProfile extends Component {
               <p>{this.props.user.skills}</p>
             </div>
           </div>
+
+          {/* connection count in top right of page */}
           <div className="profile-connected-summary-container">
             <CountMyConnections user={this.props.user} profile={this.props.profile} />
           </div>
