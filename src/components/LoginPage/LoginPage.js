@@ -29,6 +29,7 @@ class LoginPage extends Component {
     });
   }
 
+  //quick key for presentation
   loginCarolyn = () => {
     this.setState({
       username: 'carolyn.hawkins@gmail.com',
@@ -36,13 +37,14 @@ class LoginPage extends Component {
     })
   }
 
+   //quick key for presentation
   loginBrigette = () => {
     this.setState({
       username: 'brigittemetts@gmail.com',
       password: 'Hello123',
     })
   }
-
+// login page order for inputs
   render() {
     return (
       <div className="login-container">
