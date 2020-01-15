@@ -45,16 +45,6 @@ class initiateConnectionModal extends Component {
     })
   }
 
-  messageToElizabeth = () => {
-    this.setState({
-      ...this.state,
-      connection: {
-        ...this.state.connection,
-        message: 'Hi Elizabeth, I know you are looking for a skilled Graphic Designer to help you with your most recent project. Let me introduce you to Brigitte, her expertise in the industry could benefit you greatly! Really hope you two can connect sometime soon. - Carolyn'
-      }
-    })
-  }
-
   // initiate new connection request
   handleSendConnectionRequest = (connectingId) => {
     this.props.dispatch({ type: 'SEND_CONNECTION_REQUEST', payload: { connecting_id: connectingId, connecting_to_id: this.props.id, connector_id: this.props.user.id, message: this.state.connection.message } });
@@ -96,14 +86,12 @@ class initiateConnectionModal extends Component {
                 label="Search"
                 multiline={true}
                 variant="outlined"
-                // value={this.state.connection.connecting_to_id}
                 fullWidth
               />
               <div>
           <SearchInitiateConnection results={this.props.results} />
           </div>
               <TextField
-                onClick={this.messageToElizabeth}
                 onChange={this.addMessage}
                 color="primary"
                 margin="normal"
