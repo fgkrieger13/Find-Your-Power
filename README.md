@@ -70,7 +70,7 @@ When users forget their password, they have the option to reset their password b
 - Disable the two-step verification for the email account. To do this, go to myaccount.google.com, log in with the new account info, and click the “Security” tab on the left. In the Security view, scroll down to “Signing in to Google” and make sure the “2-Step Verification” is set to “off”
 - In the .env file, enter the email address and email password into `EMAIL_ADDRESS` and `EMAIL_PASSWORD`, respectively.
 
-Password reset links will expire after one hour. If that amount of time passes without the link be used, the user will have to generate a new one.
+Password reset links will expire after 24 hours. If that amount of time passes without the link be used, the user will have to generate a new one. Once a user successfully resets their password, the link will expire.
 
 
 ## Built With
